@@ -93,7 +93,7 @@ def build_sections(req, persona, tools, docs):
         "style_rules": f"STYLE (tone: {req['tone']}):\n" + "\n".join(f"- {r}" for r in persona["style_rules"]),
     }
     if req.get("partial_notes"):
-        s["partial_rules"] = "PARTIAL COVERAGE (give what the documents say, then state what is missing):\n" + \
+        s["partial_rules"] = "PARTIAL COVERAGE (answer the supported part from the context; for the unsupported part say plainly it is not in the documents, never guess):\n" + \
             "\n".join(f"- {k}: {v}" for k, v in req["partial_notes"].items())
     if tools:
         lines = ["TOOL RULES: use a tool only when the question needs it. Never invent a tool result. "
@@ -113,6 +113,18 @@ def render_system_prompt(sections):
     return "\n\n".join(sections[k] for k in ORDER if k in sections)
 
 
+def consistency_warnings(req):
+    """Catch contradictions between what the agent must answer and what it must refuse."""
+    from .guard import _terms
+    kept = [_terms(t["topic"] + " " + t["example_question"]) for t in req["must_answer_topics"]]
+    out = []
+    for r in req["must_refuse_topics"]:
+        rt = _terms(r) - {"not", "cover", "document"}
+        if rt and any(len(rt & k) / len(rt) >= 0.6 for k in kept):
+            out.append(f"refuse entry '{r}' overlaps a must-answer topic; check for contradiction")
+    return out
+
+
 def generate_agent(req, llm):
     docs = load_folder(req["docs_path"])
     persona = llm.json([{"role": "user", "content": render("generate_persona", scope=req["scope"],
@@ -127,7 +139,7 @@ def generate_agent(req, llm):
         "retrieval": choose_retrieval(docs), "tools": tools,
         "output_contract": {"fields": {"answer": "string", "sources": "list of document filenames", "refused": "bool"}},
         "refusal_message": "I can't help with that because it isn't covered by the documents I have.",
-        "tool_decisions": decisions,
+        "tool_decisions": decisions, "warnings": consistency_warnings(req),
     }
     return definition
 
@@ -141,4 +153,6 @@ def run_generate(req_path, out_dir, llm):
     print(f"[generate] {p} | tools attached: {d['tools'] or 'none'}")
     for x in d["tool_decisions"]:
         print(f"   {x['tool']:<13} {x['reason']}")
+    for w in d["warnings"]:
+        print("   WARNING:", w)
     return d

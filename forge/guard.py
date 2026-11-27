@@ -6,7 +6,7 @@ For every capability the brief asks for we combine THREE signals so no single we
 Unsupported topics are moved to must_refuse so the generated agent cannot hallucinate the gap away."""
 import re
 from .docs import chunk_all
-from .retrieval import Retriever, coverage
+from .retrieval import Retriever, coverage, STOP
 from .prompts import render
 
 LEVEL = {"none": 0, "partial": 1, "full": 2}
@@ -26,6 +26,34 @@ def evidence_verified(evidence, source, hits):
         if not source or c.source == source:
             pool |= set(_words(c.text))
     return bool(pool) and sum(w in pool for w in et) / len(et) >= 0.85
+
+
+def _stem(w):
+    for suf in ("ing", "ed", "es", "s"):
+        if w.endswith(suf) and len(w) - len(suf) >= 3:
+            return w[:-len(suf)]
+    return w
+
+
+def _terms(text):
+    return {_stem(w) for w in re.findall(r"[a-z]+", text.lower()) if w not in STOP and len(w) > 2}
+
+
+def repair_scope(req, gaps, llm):
+    """The scope was written BEFORE the coverage check, so it may still promise rejected capabilities.
+    Rewrite it, then verify in code that no term unique to a rejected topic survives; else use a template."""
+    kept = req["must_answer_topics"]
+    kept_terms = set().union(*[_terms(t["topic"] + " " + t["example_question"]) for t in kept]) if kept else set()
+    bad = set().union(*[_terms(g["topic"] + " " + g["example_question"]) for g in gaps]) - kept_terms
+    r = llm.json([{"role": "user", "content": render(
+        "scope_repair", scope=req["scope"], audience=req["audience"],
+        kept="\n".join(f"- {t['topic']}" for t in kept), removed="\n".join(f"- {g['topic']}" for g in gaps))}], temperature=0)
+    new, method = str(r.get("scope", "")).strip(), "llm"
+    if not new or (_terms(new) & bad):
+        new = f"Answers questions from {req['audience']} about: {', '.join(t['topic'] for t in kept)}. Anything else is declined."
+        method = "deterministic fallback (model scope still mentioned a removed capability)"
+    req["original_scope"], req["scope"] = req["scope"], new
+    req["scope_repair"] = {"method": method, "removed": [g["topic"] for g in gaps]}
 
 
 def check_topic(t, retr, llm):
@@ -66,5 +94,7 @@ def check_groundability(req, docs, llm):
     req["must_answer_topics"] = keep
     req["partial_notes"] = notes
     req["ungrounded_requests"] = gaps
+    if gaps and keep:
+        repair_scope(req, gaps, llm)
     req["groundability"] = {"status": status, "score": round(score, 2), "topics": results}
     return req

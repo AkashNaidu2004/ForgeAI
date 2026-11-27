@@ -92,7 +92,7 @@ def draft_requirements(brief, profiles, qa, llm):
 def to_markdown(req):
     g = req["groundability"]
     L = [f"# Requirements: {req['agent_name']}", "", f"**Brief:** {req['brief']}", "",
-         f"**Scope:** {req['scope']}", f"**Audience:** {req['audience']}", f"**Tone:** {req['tone']}", "",
+         f"**Scope:** {req['scope']}" + (f"  \n*(revised after groundability check; removed: {', '.join(req['scope_repair']['removed'])})*" if req.get("scope_repair") else ""), f"**Audience:** {req['audience']}", f"**Tone:** {req['tone']}", "",
          "## Must answer"]
     for t in req["must_answer_topics"]:
         note = req.get("partial_notes", {}).get(t["topic"])

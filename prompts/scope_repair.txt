@@ -1,0 +1,12 @@
+TASK: scope_repair
+A requirements check found that the documents cannot support some requested capabilities. Rewrite the assistant's scope so it describes ONLY what the documents support.
+
+ORIGINAL SCOPE: {{scope}}
+AUDIENCE: {{audience}}
+TOPICS THE ASSISTANT WILL COVER:
+{{kept}}
+REMOVED CAPABILITIES (documents do not support them):
+{{removed}}
+
+Write 2 to 3 sentences. Describe only the covered topics. Do not mention, hint at, or deny any removed capability (a separate refusal list handles those).
+Return JSON only: {"scope": "..."}

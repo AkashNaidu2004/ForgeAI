@@ -1,0 +1,8 @@
+TASK: generate_persona
+Write the persona part of a system prompt for an AI assistant. Other parts (grounding rules, refusal rules, tool rules) are added by the system, so do not write those.
+
+SCOPE: {{scope}}
+AUDIENCE: {{audience}}
+TONE: {{tone}}
+
+Return JSON only: {"role_line": "one sentence starting with 'You are', naming the assistant's job and who it serves", "style_rules": ["3 to 4 short imperative rules about how answers should sound and be formatted, matching the tone"]}

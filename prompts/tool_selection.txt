@@ -1,0 +1,14 @@
+TASK: tool_selection
+You are choosing which tools an AI assistant needs. Attach a tool ONLY if the brief genuinely requires it. Extra tools are a defect: unnecessary tools make small models worse.
+
+BRIEF: {{brief}}
+SCOPE: {{scope}}
+TOPICS THE ASSISTANT MUST ANSWER:
+{{topics}}
+DOCUMENT FILES AVAILABLE: {{files}}
+
+TOOL REGISTRY:
+{{registry}}
+
+For EVERY tool above decide use true/false. If true, the justification must name the specific thing in the brief or topics that cannot be answered from the documents alone without this tool.
+Return JSON only: {"tools": [{"name": "tool_name", "use": false, "justification": "..."}]}

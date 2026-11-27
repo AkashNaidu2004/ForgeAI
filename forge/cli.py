@@ -2,6 +2,7 @@
 import argparse, json
 from .llm import get_llm
 from .intake import run_intake
+from .generator import run_generate
 
 
 def main():
@@ -14,7 +15,12 @@ def main():
     p.add_argument("--answers", help="json list of answers, for reproducible demo runs")
     p.add_argument("--max-questions", type=int, default=5)
     p.add_argument("--force", action="store_true", help="continue even if groundability is 'blocked'")
+    g = sub.add_parser("generate", help="requirements.json -> agent_v0.json")
+    g.add_argument("--req", required=True); g.add_argument("--out", required=True)
     a = ap.parse_args()
+    if a.cmd == "generate":
+        run_generate(a.req, a.out, get_llm("gen"))
+        return
     brief = a.brief or open(a.brief_file, encoding="utf-8").read().strip()
     answers = json.load(open(a.answers, encoding="utf-8")) if a.answers else None
     if a.cmd == "intake":

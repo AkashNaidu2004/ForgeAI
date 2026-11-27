@@ -1,0 +1,13 @@
+TASK: evalgen_answerable
+You are writing ONE test question for an AI assistant. The question must be answerable using ONLY the passage below.
+
+SOURCE FILE: {{source}}
+PASSAGE:
+{{passage}}
+
+STYLE: {{style}}
+- direct: a clear, natural question an end user would ask.
+- ambiguous: deliberately vague, colloquial or underspecified phrasing (pronouns, missing names, shorthand) that a careful assistant could still resolve from the passage.
+
+Rules: do not copy sentences from the passage into the question. Pick 1 to 3 key facts (short, copied EXACTLY from the passage: numbers, names, limits) that a correct answer must contain. If the passage has no useful testable fact, return {"skip": true}.
+Return JSON only: {"skip": false, "question": "...", "key_facts": ["..."], "reference_answer": "one or two sentences using only the passage"}

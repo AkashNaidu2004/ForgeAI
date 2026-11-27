@@ -1,0 +1,9 @@
+TASK: evalgen_partial
+The documents only PARTLY cover a capability. Coverage note: {{note}}
+
+PASSAGES:
+{{passages}}
+
+Write ONE test question that asks for something the documents DO support and, in the same question, something they do NOT support (as described under "NOT supported"). A good assistant answers the supported part and plainly says the other part is not in the documents.
+Key facts must be copied EXACTLY from the passages (the supported part only).
+Return JSON only: {"skip": false, "question": "...", "key_facts": ["..."], "missing_item": "short description of what the answer must say is unavailable", "reference_answer": "..."}

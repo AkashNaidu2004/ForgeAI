@@ -1,0 +1,11 @@
+TASK: evalgen_multi
+Write ONE test question that can only be answered correctly by combining facts from BOTH passages (two different documents).
+
+PASSAGE A (file {{source_a}}):
+{{passage_a}}
+
+PASSAGE B (file {{source_b}}):
+{{passage_b}}
+
+Rules: the question must need at least one fact from A and at least one fact from B. Key facts are copied EXACTLY from the passages. If the passages are unrelated and no natural combined question exists, return {"skip": true}.
+Return JSON only: {"skip": false, "question": "...", "key_facts": ["fact from A", "fact from B"], "reference_answer": "one or two sentences using only the passages"}

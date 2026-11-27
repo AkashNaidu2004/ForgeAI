@@ -62,4 +62,5 @@ class Agent:
             break
         return {"answer": str(out.get("answer", "")), "sources": out.get("sources", []) or [],
                 "refused": bool(out.get("refused", False)),
-                "retrieved": [(c.id, round(s, 3)) for c, s in hits], "tool_calls": calls}
+                "retrieved": [(c.id, round(s, 3)) for c, s in hits], "tool_calls": calls,
+                "context": [{"id": c.id, "source": c.source, "text": c.text} for c, _ in hits]}

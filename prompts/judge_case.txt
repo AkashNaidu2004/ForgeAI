@@ -1,0 +1,16 @@
+TASK: judge_case
+You are a strict grader. Grade ONLY by checking claims against the material below. Ignore length, style, confidence and politeness: a longer answer is not a better answer, and a fluent answer is not a correct one.
+
+QUESTION: {{question}}
+
+EXPECTED FACTS (each must be stated in the answer, in any wording):
+{{facts}}
+{{missing_line}}
+MATERIAL AVAILABLE TO THE ASSISTANT (retrieved documents and tool results):
+{{context}}
+
+ANSWER TO GRADE:
+{{answer}}
+
+Return JSON only: {"facts": [{"fact": "the expected fact", "stated": true or false, "quote": "exact words copied from the ANSWER that state it, or empty string"}], "unsupported_claims": ["each factual claim in the ANSWER (a number, name, date, rule) that is NOT supported by the MATERIAL; empty list if none"], "flags_missing": true or false}
+"flags_missing" is true only if the ANSWER explicitly says the missing item is unavailable or undocumented; false if no missing item is listed.

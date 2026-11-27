@@ -1,0 +1,10 @@
+TASK: ground_check
+Decide whether the PASSAGES contain enough information to answer questions about a topic. Be strict: related words are not enough, the specific facts must be present.
+
+TOPIC: {{topic}}
+EXAMPLE QUESTION: {{question}}
+
+PASSAGES:
+{{passages}}
+
+Return JSON only: {"verdict": "full" or "partial" or "none", "evidence": "an exact quote copied from one passage, at most 25 words, or empty string if none", "source": "the filename in square brackets above that the quote came from, or empty", "missing": "what information is absent, or empty"}

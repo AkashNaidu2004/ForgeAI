@@ -1,0 +1,9 @@
+TASK: doc_profile
+You are indexing a document for a team that is configuring an AI assistant.
+Document name: {{name}}
+Type: {{kind}}
+Excerpts (start / middle / end):
+{{excerpts}}
+
+Return JSON only: {"summary": "at most 2 sentences: what this document is and who it is for", "topics": ["5 to 10 short topic phrases this document can actually answer questions about"]}
+Only list topics evidenced in the excerpts. Do not guess.

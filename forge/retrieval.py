@@ -53,3 +53,14 @@ def cos(a, b):
     import numpy as np
     a, b = np.array(a), np.array(b)
     return float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-9))
+
+
+def coverage(retriever, query, top_k=4):
+    """Deterministic grounding signal: best fraction of the query's content words found in ONE retrieved chunk.
+    Unlike BM25 scores (normalised to the top hit, so always 1.0) this can be low when docs lack the topic."""
+    qt = set(tok(query))
+    hits = retriever.search(query, top_k)
+    if not qt:
+        return 0.0, hits
+    best = max((len(qt & set(tok(c.text))) / len(qt) for c, _ in hits), default=0.0)
+    return best, hits

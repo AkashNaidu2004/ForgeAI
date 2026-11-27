@@ -1,0 +1,24 @@
+TASK: intake_requirements
+Write a requirements document for an AI assistant that will be built from the brief and grounded ONLY in the listed documents.
+
+BRIEF: {{brief}}
+
+DOCUMENTS:
+{{profiles}}
+
+CLARIFICATIONS (question -> answer, with whether the requester answered or a default was assumed):
+{{qa}}
+
+Return JSON only, with exactly these keys:
+{"agent_name": "short_snake_case_name",
+ "scope": "2-3 sentences: what the assistant covers and where it stops",
+ "audience": "who will use it",
+ "tone": "how it should sound",
+ "must_answer_topics": [{"topic": "short phrase", "example_question": "a realistic question a user would ask"}],
+ "must_refuse_topics": ["things the assistant must decline"],
+ "tool_signals": {"needs_calculation": false, "needs_live_data": false, "needs_table_lookup": false, "needs_current_date": false}}
+
+Rules:
+- 4 to 8 must_answer_topics. Include EVERY capability the brief asks for, even if the documents do not seem to cover it; a separate check verifies coverage later. Do not silently drop things.
+- At least 3 must_refuse_topics (out-of-scope, legal/medical advice, personal data, anything outside the documents).
+- tool_signals: true only if the brief itself requires arithmetic, live external data, lookups in a table/catalogue, or today's date.

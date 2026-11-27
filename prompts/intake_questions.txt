@@ -1,0 +1,14 @@
+TASK: intake_questions
+You are a requirements analyst for an AI-assistant factory. A requester wrote a brief; you also have a profile of the documents the assistant will be grounded on.
+
+BRIEF: {{brief}}
+
+DOCUMENTS:
+{{profiles}}
+
+Ask at most {{max_q}} clarifying questions. Rules:
+- Only ask what you cannot infer from the brief or the documents (audience, tone, what to refuse, escalation path, scope boundaries).
+- Never ask something the documents already answer.
+- Each question must be answerable in one sentence.
+- For each question give a "default": the assumption you will make if the requester does not answer.
+Return JSON only: {"questions": [{"question": "...", "why": "...", "default": "..."}]}

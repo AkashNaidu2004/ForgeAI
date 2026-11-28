@@ -11,7 +11,7 @@ SIGNAL = {"calculator": "needs_calculation", "current_date": "needs_current_date
           "weather_api": "needs_live_data", "csv_lookup": "needs_table_lookup"}
 
 KEYWORDS = {
-    "calculator": ["calculate", "calculation", "total cost", "totals", "cost", "price", "pricing", "quote", "quantity",
+    "calculator": ["calculate", "calculation", "compute", "fine", "fines", "total cost", "totals", "cost", "price", "pricing", "quote", "quantity",
                    "percentage", "percent", "budget", "convert", "how much", "discount", "tax", "margin"],
     "current_date": ["today", "current date", "deadline", "days until", "days left", "expiry", "expires", "overdue", "due date", "tomorrow"],
     "weather_api": ["weather", "forecast", "temperature", "rain", "wind speed", "storm", "sea state", "humidity"],

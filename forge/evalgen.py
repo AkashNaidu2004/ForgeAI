@@ -5,9 +5,9 @@ Because the judge will trust these cases, every case is validated in code before
   - near-miss refusal cases are dropped if the documents seem to answer them
   - duplicates and answer-leaking questions are dropped
 Dropped candidates are logged, so the report can say how much of the generator's output was rejected."""
-import json, os, random
+import json, os, random, re
 from collections import Counter
-from .docs import chunk_all
+from .docs import chunk_all, Chunk
 from .retrieval import Retriever
 from .guard import gather, union_coverage
 from .prompts import render
@@ -185,6 +185,12 @@ class Gen:
                 break
             c = next(it)
             topics = sorted(self.topics, key=lambda t: self.covered[t])
+            # Rotate focused evidence rather than repeating the entire short document.
+            units = [Chunk(f"{d.name}:unit:{i}", d.name, unit.strip())
+                     for d in self.docs for i, unit in enumerate(re.split(r"\n+|(?<=[.!?])\s+", d.text))
+                     if len(unit.split()) >= 5]
+            if units:
+                c = units[_ % len(units)]
             self.batch(typ, n-self.counts[typ], {c.source:c.text}, render("evalgen_answerable", source=c.source, passage=c.text, style=style, topic="; ".join(topics), scope=self.req["scope"]))
 
     def batched_multi(self, n):
@@ -264,11 +270,13 @@ class Gen:
     def partial(self, n):
         for topic, note in list(self.req.get("partial_notes", {}).items())[:n]:
             hits = gather(self.retr, topic + " " + note)
-            r = self._llm(render("evalgen_partial", note=note, passages="\n\n".join(f"[{c.source}]\n{c.text}" for c, _ in hits)))
-            ok = self._check(r, [c.text for c, _ in hits])
-            if ok and str(r.get("missing_item", "")).strip():
-                self._add("partial", ok[0], ok[1], sorted({c.source for c, _ in hits if any(fact_in_text(f, c.text) for f in ok[1])}),
-                          ok[2], _evidence(hits), missing_item=str(r["missing_item"]))
+            for attempt in range(3 if self.verify else 1):
+                r = self._llm(render("evalgen_partial", note=note, passages="\n\n".join(f"[{c.source}]\n{c.text}" for c, _ in hits)))
+                ok = self._check(r, [c.text for c, _ in hits])
+                if ok and str(r.get("missing_item", "")).strip():
+                    self._add("partial", ok[0], ok[1], sorted({c.source for c, _ in hits if any(fact_in_text(f, c.text) for f in ok[1])}),
+                              ok[2], _evidence(hits), missing_item=str(r["missing_item"]))
+                    break
 
     def refuse(self, n):
         req = self.req

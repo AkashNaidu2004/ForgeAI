@@ -1,6 +1,6 @@
 """Requirement 1: intake interviewer. Brief + docs -> <=5 questions -> structured requirements.json.
 Then hands over to the groundability guard (requirement 2)."""
-import json, os
+import json, os, re
 from .docs import load_folder
 from .prompts import render
 from .guard import check_groundability
@@ -86,7 +86,15 @@ def draft_requirements(brief, profiles, qa, llm):
     qa_txt = "\n".join(f"- {x['question']} -> {x['answer']} ({x['answer_source']})" for x in qa) or "(none asked)"
     r = llm.json([{"role": "user", "content": render("intake_requirements", brief=brief, qa=qa_txt,
                                                      profiles=_fmt_profiles(profiles))}], temperature=0.2)
-    return validate_requirements(r)
+    req = validate_requirements(r)
+    # Preserve explicit positive arithmetic requests before the grounding check.
+    clauses = re.split(r"[.;!?\n]|\band\b", brief, flags=re.I)
+    for clause in clauses:
+        if re.search(r"\b(?:calculate|compute|work out)\b", clause, re.I) and not re.search(r"\b(?:not|never|refuse|avoid|without)\b", clause, re.I):
+            req["tool_signals"]["needs_calculation"] = True
+            if not any(re.search(r"\b(?:calculat\w*|comput\w*|total\w*)\b", t["topic"] + " " + t["example_question"], re.I) for t in req["must_answer_topics"]):
+                req["must_answer_topics"].append({"topic": clause.strip(), "example_question": clause.strip()})
+    return req
 
 
 def to_markdown(req):

@@ -1,0 +1,658 @@
+{
+  "agent_in": "runs/ship_spares/agent_v0.json",
+  "evalset": "runs/ship_spares/eval_set.json",
+  "max_iterations": 3,
+  "stop_reason": "last iteration did not improve the dev score; reverted",
+  "split": {
+    "dev": [
+      "amb-01",
+      "amb-03",
+      "ans-02",
+      "ans-04",
+      "ans-05",
+      "ans-06",
+      "ans-07",
+      "ans-09",
+      "mul-01",
+      "mul-02",
+      "mul-03",
+      "mul-04",
+      "out-01",
+      "out-03",
+      "out-04",
+      "out-05",
+      "out-06",
+      "par-01"
+    ],
+    "held_out": [
+      "amb-02",
+      "ans-01",
+      "ans-03",
+      "ans-08",
+      "out-02",
+      "par-02"
+    ]
+  },
+  "versions": [
+    {
+      "version": 0,
+      "config": {
+        "agent": "ollama:qwen2.5:7b",
+        "judge": "deterministic"
+      },
+      "overall": {
+        "n": 24,
+        "passed": 11,
+        "rate": 0.458
+      },
+      "dev": {
+        "n": 18,
+        "passed": 9,
+        "rate": 0.5
+      },
+      "held_out": {
+        "n": 6,
+        "passed": 2,
+        "rate": 0.333
+      },
+      "scorecard": {
+        "n_cases": 24,
+        "passed": 11,
+        "pass_rate": 0.458,
+        "answer_correct_rate": 0.278,
+        "grounded_rate": 1.0,
+        "refusal_accuracy": 1.0,
+        "false_refusal_rate": 0.0,
+        "retrieval_hit_rate": 1.0,
+        "errors": 0,
+        "by_type": {
+          "answerable": {
+            "n": 9,
+            "passed": 5
+          },
+          "ambiguous": {
+            "n": 3,
+            "passed": 0
+          },
+          "multi_doc": {
+            "n": 4,
+            "passed": 0
+          },
+          "partial": {
+            "n": 2,
+            "passed": 0
+          },
+          "out_of_scope": {
+            "n": 6,
+            "passed": 6
+          }
+        },
+        "judge": {
+          "model": "llama3.2:3b",
+          "agent_model": "qwen2.5:7b",
+          "mode": "deterministic only",
+          "canaries": {
+            "accuracy": 0.67,
+            "n": 12,
+            "by_kind": {
+              "gold": 0.0,
+              "wrong": 1.0,
+              "padded_wrong": 1.0,
+              "fabricated": 0.67
+            },
+            "reliable": false
+          },
+          "warning_reliability": "judge failed canary tests; LLM verdicts disabled, deterministic checks only"
+        },
+        "failed_ids": [
+          "ans-01",
+          "ans-04",
+          "ans-08",
+          "ans-09",
+          "amb-01",
+          "amb-02",
+          "amb-03",
+          "mul-01",
+          "mul-02",
+          "mul-03",
+          "mul-04",
+          "par-01",
+          "par-02"
+        ],
+        "seconds": 453.3
+      }
+    },
+    {
+      "version": 1,
+      "config": {
+        "agent": "ollama:qwen2.5:7b",
+        "judge": "deterministic"
+      },
+      "overall": {
+        "n": 24,
+        "passed": 12,
+        "rate": 0.5
+      },
+      "dev": {
+        "n": 18,
+        "passed": 11,
+        "rate": 0.611
+      },
+      "held_out": {
+        "n": 6,
+        "passed": 1,
+        "rate": 0.167
+      },
+      "scorecard": {
+        "n_cases": 24,
+        "passed": 12,
+        "pass_rate": 0.5,
+        "answer_correct_rate": 0.333,
+        "grounded_rate": 1.0,
+        "refusal_accuracy": 1.0,
+        "false_refusal_rate": 0.0,
+        "retrieval_hit_rate": 1.0,
+        "errors": 0,
+        "by_type": {
+          "answerable": {
+            "n": 9,
+            "passed": 5
+          },
+          "ambiguous": {
+            "n": 3,
+            "passed": 1
+          },
+          "multi_doc": {
+            "n": 4,
+            "passed": 0
+          },
+          "partial": {
+            "n": 2,
+            "passed": 0
+          },
+          "out_of_scope": {
+            "n": 6,
+            "passed": 6
+          }
+        },
+        "judge": {
+          "model": null,
+          "agent_model": "qwen2.5:7b",
+          "mode": "deterministic only"
+        },
+        "failed_ids": [
+          "ans-01",
+          "ans-03",
+          "ans-08",
+          "ans-09",
+          "amb-01",
+          "amb-02",
+          "mul-01",
+          "mul-02",
+          "mul-03",
+          "mul-04",
+          "par-01",
+          "par-02"
+        ],
+        "seconds": 475.5
+      }
+    }
+  ],
+  "iterations": [
+    {
+      "iteration": 1,
+      "from_version": 0,
+      "dev_failures": [
+        {
+          "id": "ans-04",
+          "category": "eval_defect_suspect",
+          "genuine_agent_defect": false,
+          "note": "deterministic matching only; a paraphrase may have been missed"
+        },
+        {
+          "id": "ans-09",
+          "category": "eval_defect_suspect",
+          "genuine_agent_defect": false,
+          "note": "deterministic matching only; a paraphrase may have been missed"
+        },
+        {
+          "id": "amb-01",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.33"
+        },
+        {
+          "id": "amb-03",
+          "category": "eval_defect_suspect",
+          "genuine_agent_defect": false,
+          "note": "deterministic matching only; a paraphrase may have been missed"
+        },
+        {
+          "id": "mul-01",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "mul-02",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "mul-03",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "mul-04",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "par-01",
+          "category": "partial_gap",
+          "genuine_agent_defect": true,
+          "note": ""
+        }
+      ],
+      "patches": [
+        {
+          "category": "incomplete_answer",
+          "target": "prompt_sections.completeness_policy",
+          "change": "added rule",
+          "rule": "Ensure all relevant information from the retrieved passages is included in the answer, and if any information is missing, provide a clear indication of what is missing.",
+          "before_len": 0,
+          "after_len": 168,
+          "rule_source": "critic",
+          "targets": [
+            "amb-01",
+            "mul-01",
+            "mul-02",
+            "mul-03",
+            "mul-04"
+          ],
+          "fixed": [],
+          "still_failing": [
+            "amb-01",
+            "mul-01",
+            "mul-02",
+            "mul-03",
+            "mul-04"
+          ]
+        },
+        {
+          "category": "partial_gap",
+          "target": "prompt_sections.partial_rules",
+          "change": "added rule",
+          "rule": "- Always specify which part of the question the documents do not cover when an answer is incomplete.",
+          "before_len": 749,
+          "after_len": 850,
+          "rule_source": "critic",
+          "targets": [
+            "par-01"
+          ],
+          "fixed": [],
+          "still_failing": [
+            "par-01"
+          ]
+        }
+      ],
+      "regressions": [
+        "ans-03"
+      ],
+      "newly_passing": [
+        "ans-04",
+        "amb-03"
+      ],
+      "dev_before": {
+        "n": 18,
+        "passed": 9,
+        "rate": 0.5
+      },
+      "dev_after": {
+        "n": 18,
+        "passed": 11,
+        "rate": 0.611
+      },
+      "held_out_before": {
+        "n": 6,
+        "passed": 2,
+        "rate": 0.333
+      },
+      "held_out_after": {
+        "n": 6,
+        "passed": 1,
+        "rate": 0.167
+      },
+      "overall_before": {
+        "n": 24,
+        "passed": 11,
+        "rate": 0.458
+      },
+      "overall_after": {
+        "n": 24,
+        "passed": 12,
+        "rate": 0.5
+      },
+      "config": {
+        "agent": "ollama:qwen2.5:7b",
+        "judge": "deterministic"
+      },
+      "accepted": true,
+      "outcome": "accepted"
+    },
+    {
+      "iteration": 2,
+      "from_version": 1,
+      "dev_failures": [
+        {
+          "id": "ans-09",
+          "category": "eval_defect_suspect",
+          "genuine_agent_defect": false,
+          "note": "deterministic matching only; a paraphrase may have been missed"
+        },
+        {
+          "id": "amb-01",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.33"
+        },
+        {
+          "id": "mul-01",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "mul-02",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "mul-03",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "mul-04",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "par-01",
+          "category": "partial_gap",
+          "genuine_agent_defect": true,
+          "note": ""
+        }
+      ],
+      "patches": [
+        {
+          "category": "incomplete_answer",
+          "target": "prompt_sections.completeness_policy",
+          "change": "added rule",
+          "rule": "Ensure all relevant information from the retrieved passages is included in the answer, and if any information is missing, provide a clear indication of what is missing.",
+          "before_len": 168,
+          "after_len": 337,
+          "rule_source": "critic",
+          "targets": [
+            "amb-01",
+            "mul-01",
+            "mul-02",
+            "mul-03",
+            "mul-04"
+          ],
+          "fixed": [],
+          "still_failing": [
+            "amb-01",
+            "mul-01",
+            "mul-02",
+            "mul-03",
+            "mul-04"
+          ]
+        },
+        {
+          "category": "partial_gap",
+          "target": "prompt_sections.partial_rules",
+          "change": "added rule",
+          "rule": "- Clearly indicate which parts of the question the documents do not cover in your answer.",
+          "before_len": 850,
+          "after_len": 940,
+          "rule_source": "critic",
+          "targets": [
+            "par-01"
+          ],
+          "fixed": [],
+          "still_failing": [
+            "par-01"
+          ]
+        }
+      ],
+      "regressions": [
+        "ans-02"
+      ],
+      "newly_passing": [
+        "ans-03"
+      ],
+      "dev_before": {
+        "n": 18,
+        "passed": 11,
+        "rate": 0.611
+      },
+      "dev_after": {
+        "n": 18,
+        "passed": 10,
+        "rate": 0.556
+      },
+      "held_out_before": {
+        "n": 6,
+        "passed": 1,
+        "rate": 0.167
+      },
+      "held_out_after": {
+        "n": 6,
+        "passed": 2,
+        "rate": 0.333
+      },
+      "overall_before": {
+        "n": 24,
+        "passed": 12,
+        "rate": 0.5
+      },
+      "overall_after": {
+        "n": 24,
+        "passed": 12,
+        "rate": 0.5
+      },
+      "config": {
+        "agent": "ollama:qwen2.5:7b",
+        "judge": "deterministic"
+      },
+      "accepted": false,
+      "outcome": "REJECTED and reverted: dev pass count did not improve"
+    }
+  ],
+  "config_changes": [],
+  "final_version": 1,
+  "final_failures": [
+    {
+      "id": "ans-01",
+      "type": "answerable",
+      "split": "held_out",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.0",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "How much does the Fuel injector nozzle cost?",
+      "answer": "The Fuel injector nozzle costs 420.00 USD."
+    },
+    {
+      "id": "ans-03",
+      "type": "answerable",
+      "split": "held_out",
+      "category": "eval_defect_suspect",
+      "genuine_agent_defect": false,
+      "note": "deterministic matching only; a paraphrase may have been missed",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "What is the unit price in USD and the stock quantity for the Fuel injector nozzle?",
+      "answer": "Unit price: $420.00; Stock quantity: 12"
+    },
+    {
+      "id": "ans-08",
+      "type": "answerable",
+      "split": "held_out",
+      "category": "eval_defect_suspect",
+      "genuine_agent_defect": false,
+      "note": "deterministic matching only; a paraphrase may have been missed",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "How much discount does MarineParts Ltd give on orders over $5,000?",
+      "answer": "MarineParts Ltd gives a 5 percent discount on orders over $5,000."
+    },
+    {
+      "id": "ans-09",
+      "type": "answerable",
+      "split": "dev",
+      "category": "eval_defect_suspect",
+      "genuine_agent_defect": false,
+      "note": "deterministic matching only; a paraphrase may have been missed",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "What is the stock of the fuel injector nozzle?",
+      "answer": "The stock of the fuel injector nozzle (part_number: SP-1001) is 12."
+    },
+    {
+      "id": "amb-01",
+      "type": "ambiguous",
+      "split": "dev",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.33",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "How much does the part with 25 in stock cost?",
+      "answer": "The part with 25 in stock is the Centrifugal pump seal kit (part_number: SP-2001) and it costs 128.00 USD."
+    },
+    {
+      "id": "amb-02",
+      "type": "ambiguous",
+      "split": "held_out",
+      "category": "eval_defect_suspect",
+      "genuine_agent_defect": false,
+      "note": "deterministic matching only; a paraphrase may have been missed",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "If I place a big order from MarineParts, how fast will it arrive, will I get a discount, and can I return it unopened?",
+      "answer": "Your order from MarineParts Ltd will be delivered within 14 days. Since the order is big (above 5000 USD), you will receive a 5 percent discount. Returns are accepted within 30 days if the items are unopened."
+    },
+    {
+      "id": "mul-01",
+      "type": "multi_doc",
+      "split": "dev",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.0",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "If a customer orders all 12 units of part SP-1001 (Fuel injector nozzle) from MarineParts Ltd, will they qualify for the 5 percent discount, and what is the total cost after discount?",
+      "answer": "The customer will qualify for the 5 percent discount. The total cost after discount is 5,040.00 USD."
+    },
+    {
+      "id": "mul-02",
+      "type": "multi_doc",
+      "split": "dev",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.0",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "How much would a customer pay for 15 units of part SP-1001 from MarineParts Ltd after the discount is applied?",
+      "answer": "The customer would pay $5,880.00 for 15 units of part SP-1001 from MarineParts Ltd after the discount is applied."
+    },
+    {
+      "id": "mul-03",
+      "type": "multi_doc",
+      "split": "dev",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.0",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "If a customer orders 15 units of part SP-1001 from MarineParts Ltd, what is the total cost before discount, and will the order qualify for the 5% discount?",
+      "answer": "The total cost before discount is $6300.00. The order does not qualify for the 5% discount as the order amount is less than 5000 USD."
+    },
+    {
+      "id": "mul-04",
+      "type": "multi_doc",
+      "split": "dev",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.0",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "If a customer orders 15 units of part SP-1001 from MarineParts Ltd, what is the total cost after discount and how long will delivery take?",
+      "answer": "The total cost for 15 units of part SP-1001 from MarineParts Ltd is $6,300.00 after a 5% discount. Delivery will take 14 days.\n\nTotal cost calculation: 15 units * $420.00/unit = $6,300.00\nDiscount: $6,300.00 * 5% = $315.00\nDiscounted total: $6,300.00 - $315.00 = $5,985.00\n\nSources: supplier_terms.txt, catalogue.csv"
+    },
+    {
+      "id": "par-01",
+      "type": "partial",
+      "split": "dev",
+      "category": "partial_gap",
+      "genuine_agent_defect": true,
+      "note": "",
+      "signals": [
+        "missing_item_not_flagged",
+        "facts_missing_from_answer"
+      ],
+      "question": "What are the unit prices of parts SP-1001 and SP-1002, and what discount rule applies to MarineParts Ltd orders above $5000? Also, what discount rule applies to OceanFlow Supplies orders?",
+      "answer": "Unit prices: SP-1001: $420.00, SP-1002: $35.50. Discount rule for MarineParts Ltd: 5 percent discount for orders above $5000. Discount rule for OceanFlow Supplies: No specific discount mentioned in the documents."
+    },
+    {
+      "id": "par-02",
+      "type": "partial",
+      "split": "held_out",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.0",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "What discount does MarineParts Ltd offer for orders over $5,000, and does the document specify discount policies for OceanFlow Supplies?",
+      "answer": "MarineParts Ltd offers a 5 percent discount for orders over $5,000. OceanFlow Supplies' discount policies are not specified in the provided documents."
+    }
+  ],
+  "official_score": {
+    "note": "all cases count, including suspected eval defects",
+    "config": {
+      "agent": "ollama:qwen2.5:7b",
+      "judge": "deterministic"
+    },
+    "comparable_baseline": {
+      "version": 0,
+      "rebaseline": false,
+      "n": 24,
+      "passed": 11,
+      "rate": 0.458
+    },
+    "n": 24,
+    "passed": 12,
+    "rate": 0.5
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "stages": {
+    "run": {
+      "calls": 0,
+      "cache_hits": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "waited_s": 0.0
+    },
+    "intake": {
+      "calls": 9,
+      "cache_hits": 0,
+      "prompt_tokens": 4249,
+      "completion_tokens": 1005,
+      "seconds": 276.15,
+      "waited_s": 0.0
+    },
+    "generate": {
+      "calls": 2,
+      "cache_hits": 0,
+      "prompt_tokens": 558,
+      "completion_tokens": 254,
+      "seconds": 69.94,
+      "waited_s": 0.0
+    },
+    "evalgen": {
+      "calls": 39,
+      "cache_hits": 0,
+      "prompt_tokens": 21550,
+      "completion_tokens": 6249,
+      "seconds": 874.25,
+      "waited_s": 0.0
+    },
+    "optimize": {
+      "calls": 87,
+      "cache_hits": 1,
+      "prompt_tokens": 87006,
+      "completion_tokens": 4889,
+      "seconds": 1627.45,
+      "waited_s": 0.0
+    }
+  },
+  "events": [],
+  "totals": {
+    "calls": 137,
+    "cache_hits": 1,
+    "prompt_tokens": 113363,
+    "completion_tokens": 12397,
+    "seconds": 2847.8,
+    "waited_s": 0.0
+  },
+  "limits": {
+    "rpm": 30.0,
+    "tpm": 8000.0,
+    "rpd": 1000.0,
+    "tpd": 200000.0,
+    "margin": 0.85
+  }
+}

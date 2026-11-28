@@ -1,0 +1,28 @@
+[
+  {
+    "name": "catalogue.csv",
+    "kind": "csv",
+    "words": 53,
+    "summary": "This document is a catalog of parts for an AI assistant to manage inventory and supplier information.",
+    "topics": [
+      "part number",
+      "description",
+      "unit price usd",
+      "stock",
+      "supplier"
+    ]
+  },
+  {
+    "name": "supplier_terms.txt",
+    "kind": "text",
+    "words": 42,
+    "summary": "This document is a text file containing terms and conditions for suppliers, specifically related to delivery times and return policies.",
+    "topics": [
+      "supplier terms",
+      "delivery times",
+      "discounts for orders",
+      "return policies",
+      "emergency air freight"
+    ]
+  }
+]

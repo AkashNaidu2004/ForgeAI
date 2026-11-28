@@ -1,0 +1,264 @@
+{
+  "agent_in": "runs/test_hr/agent_v0.json",
+  "evalset": "runs/test_hr_v5/eval_set.json",
+  "max_iterations": 3,
+  "stop_reason": "last iteration did not improve the dev score; reverted",
+  "split": {
+    "dev": [
+      "amb-01",
+      "ans-02",
+      "ans-04",
+      "ans-05",
+      "ans-06",
+      "ans-07",
+      "ans-09",
+      "ans-10",
+      "ans-11",
+      "mul-01",
+      "mul-02",
+      "mul-03",
+      "out-01",
+      "out-03",
+      "out-04",
+      "out-05",
+      "out-06"
+    ],
+    "held_out": [
+      "amb-02",
+      "ans-01",
+      "ans-03",
+      "ans-08",
+      "out-02"
+    ]
+  },
+  "versions": [
+    {
+      "version": 0,
+      "config": {
+        "agent": "ollama:qwen2.5:7b",
+        "judge": "ollama:llama3.2:3b"
+      },
+      "overall": {
+        "n": 22,
+        "passed": 19,
+        "rate": 0.864
+      },
+      "dev": {
+        "n": 17,
+        "passed": 15,
+        "rate": 0.882
+      },
+      "held_out": {
+        "n": 5,
+        "passed": 4,
+        "rate": 0.8
+      },
+      "scorecard": {
+        "n_cases": 22,
+        "passed": 19,
+        "pass_rate": 0.864,
+        "answer_correct_rate": 0.875,
+        "grounded_rate": 1.0,
+        "refusal_accuracy": 0.833,
+        "false_refusal_rate": 0.0,
+        "retrieval_hit_rate": 1.0,
+        "errors": 0,
+        "by_type": {
+          "multi_doc": {
+            "n": 3,
+            "passed": 3
+          },
+          "ambiguous": {
+            "n": 2,
+            "passed": 0
+          },
+          "answerable": {
+            "n": 11,
+            "passed": 11
+          },
+          "out_of_scope": {
+            "n": 6,
+            "passed": 5
+          }
+        },
+        "judge": {
+          "model": "llama3.2:3b",
+          "agent_model": "qwen2.5:7b",
+          "mode": "deterministic checks + LLM judge (quote-verified)",
+          "canaries": {
+            "accuracy": 0.92,
+            "n": 12,
+            "by_kind": {
+              "gold": 1.0,
+              "wrong": 1.0,
+              "padded_wrong": 1.0,
+              "fabricated": 0.67
+            },
+            "reliable": true
+          }
+        },
+        "failed_ids": [
+          "amb-01",
+          "amb-02",
+          "out-05"
+        ],
+        "seconds": 0.2
+      }
+    }
+  ],
+  "iterations": [
+    {
+      "iteration": 1,
+      "from_version": 0,
+      "dev_failures": [
+        {
+          "id": "amb-01",
+          "category": "incomplete_answer",
+          "genuine_agent_defect": true,
+          "note": "fact recall 0.0"
+        },
+        {
+          "id": "out-05",
+          "category": "refusal_flag",
+          "genuine_agent_defect": true,
+          "note": "text declines but refused=false"
+        }
+      ],
+      "patches": [
+        {
+          "category": "incomplete_answer",
+          "target": "prompt_sections.completeness_policy",
+          "change": "added rule",
+          "rule": "Ensure all relevant facts from the retrieved passages are incorporated into your answer, and if any information is missing, provide a clear indication of what is missing.",
+          "before_len": 0,
+          "after_len": 170,
+          "rule_source": "critic",
+          "targets": [
+            "amb-01"
+          ],
+          "fixed": [],
+          "still_failing": [
+            "amb-01"
+          ]
+        },
+        {
+          "category": "refusal_flag",
+          "target": "prompt_sections.contract_policy",
+          "change": "added rule",
+          "rule": "Whenever you decline or say the information is unavailable, you must also set refused=true and sources=[].",
+          "before_len": 0,
+          "after_len": 106,
+          "rule_source": "template",
+          "targets": [
+            "out-05"
+          ],
+          "fixed": [],
+          "still_failing": [
+            "out-05"
+          ]
+        }
+      ],
+      "regressions": [
+        "out-03"
+      ],
+      "newly_passing": [],
+      "dev_before": {
+        "n": 17,
+        "passed": 15,
+        "rate": 0.882
+      },
+      "dev_after": {
+        "n": 17,
+        "passed": 14,
+        "rate": 0.824
+      },
+      "held_out_before": {
+        "n": 5,
+        "passed": 4,
+        "rate": 0.8
+      },
+      "held_out_after": {
+        "n": 5,
+        "passed": 4,
+        "rate": 0.8
+      },
+      "overall_before": {
+        "n": 22,
+        "passed": 19,
+        "rate": 0.864
+      },
+      "overall_after": {
+        "n": 22,
+        "passed": 18,
+        "rate": 0.818
+      },
+      "config": {
+        "agent": "ollama:qwen2.5:7b",
+        "judge": "ollama:llama3.2:3b"
+      },
+      "accepted": false,
+      "outcome": "REJECTED and reverted: dev pass count did not improve"
+    }
+  ],
+  "config_changes": [],
+  "final_version": 0,
+  "final_failures": [
+    {
+      "id": "amb-01",
+      "type": "ambiguous",
+      "split": "dev",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.0",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "How many days can I carry over?",
+      "answer": "You can carry over up to 5 unused days of annual leave into the next year."
+    },
+    {
+      "id": "amb-02",
+      "type": "ambiguous",
+      "split": "held_out",
+      "category": "incomplete_answer",
+      "genuine_agent_defect": true,
+      "note": "fact recall 0.0",
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "question": "What do I need if I\u2019m sick for more than two days?",
+      "answer": "If you are sick for more than two consecutive days, you need a medical certificate."
+    },
+    {
+      "id": "out-05",
+      "type": "out_of_scope",
+      "split": "dev",
+      "category": "refusal_flag",
+      "genuine_agent_defect": true,
+      "note": "text declines but refused=false",
+      "signals": [
+        "answered_unanswerable",
+        "refusal_text_without_flag"
+      ],
+      "question": "What is the procedure for taking a leave of absence for a family emergency?",
+      "answer": "The procedure for taking a leave of absence for a family emergency is similar to requesting annual or sick leave. It must be requested at least 14 days in advance through the HR portal. If the leave is for a family emergency and the notice period cannot be met, the employee should still inform their manager and HR as soon as possible. A medical certificate or a written explanation may be required "
+    }
+  ],
+  "official_score": {
+    "note": "all cases count, including suspected eval defects",
+    "config": {
+      "agent": "ollama:qwen2.5:7b",
+      "judge": "ollama:llama3.2:3b"
+    },
+    "comparable_baseline": {
+      "version": 0,
+      "rebaseline": false,
+      "n": 22,
+      "passed": 19,
+      "rate": 0.864
+    },
+    "n": 22,
+    "passed": 19,
+    "rate": 0.864
+  }
+}

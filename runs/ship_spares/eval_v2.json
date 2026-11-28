@@ -1,0 +1,815 @@
+{
+  "agent": "agent_v2.json",
+  "scorecard": {
+    "n_cases": 24,
+    "passed": 12,
+    "pass_rate": 0.5,
+    "answer_correct_rate": 0.333,
+    "grounded_rate": 1.0,
+    "refusal_accuracy": 1.0,
+    "false_refusal_rate": 0.0,
+    "retrieval_hit_rate": 1.0,
+    "errors": 0,
+    "by_type": {
+      "answerable": {
+        "n": 9,
+        "passed": 5
+      },
+      "ambiguous": {
+        "n": 3,
+        "passed": 1
+      },
+      "multi_doc": {
+        "n": 4,
+        "passed": 0
+      },
+      "partial": {
+        "n": 2,
+        "passed": 0
+      },
+      "out_of_scope": {
+        "n": 6,
+        "passed": 6
+      }
+    },
+    "judge": {
+      "model": null,
+      "agent_model": "qwen2.5:7b",
+      "mode": "deterministic only"
+    },
+    "failed_ids": [
+      "ans-01",
+      "ans-02",
+      "ans-08",
+      "ans-09",
+      "amb-01",
+      "amb-02",
+      "mul-01",
+      "mul-02",
+      "mul-03",
+      "mul-04",
+      "par-01",
+      "par-02"
+    ],
+    "seconds": 531.5
+  },
+  "results": [
+    {
+      "id": "ans-01",
+      "type": "answerable",
+      "question": "How much does the Fuel injector nozzle cost?",
+      "expected": "answer",
+      "answer": "The Fuel injector nozzle costs 420.00 USD.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "unit_price_usd: 420.00": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "ans-02",
+      "type": "answerable",
+      "question": "What are the standard delivery times for MarineParts Ltd and OceanFlow Supplies?",
+      "expected": "answer",
+      "answer": "MarineParts Ltd standard delivery time: 14 days. OceanFlow Supplies standard delivery time: 21 days.",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "standard delivery within 14 days": false,
+        "delivery within 21 days": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "ans-03",
+      "type": "answerable",
+      "question": "What is the unit price in USD and the stock quantity for the Fuel injector nozzle?",
+      "expected": "answer",
+      "answer": "The unit price in USD for the Fuel injector nozzle is 420.00 USD and the stock quantity is 12.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "unit_price_usd: 420.00": true,
+        "stock: 12": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-04",
+      "type": "answerable",
+      "question": "What is MarineParts Ltd's delivery time and discount policy for large orders?",
+      "expected": "answer",
+      "answer": "MarineParts Ltd's delivery time is standard within 14 days. Orders above 5000 USD receive a 5 percent discount.",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "standard delivery within 14 days": true,
+        "orders above 5000 USD receive a 5 percent discount": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-05",
+      "type": "answerable",
+      "question": "What is the unit price in USD of the Fuel injector nozzle?",
+      "expected": "answer",
+      "answer": "The unit price in USD of the Fuel injector nozzle is 420.00.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "unit_price_usd: 420.00": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-06",
+      "type": "answerable",
+      "question": "What discount does MarineParts Ltd offer for orders above 5000 USD?",
+      "expected": "answer",
+      "answer": "MarineParts Ltd offers a 5 percent discount for orders above 5000 USD.",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "5000 USD": true,
+        "5 percent discount": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-07",
+      "type": "answerable",
+      "question": "Which part number is for the fuel injector nozzle?",
+      "expected": "answer",
+      "answer": "The part number for the fuel injector nozzle is SP-1001.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "part_number: SP-1001": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-08",
+      "type": "answerable",
+      "question": "How much discount does MarineParts Ltd give on orders over $5,000?",
+      "expected": "answer",
+      "answer": "MarineParts Ltd gives a 5 percent discount on orders over $5,000.",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.5,
+      "facts_stated": {
+        "5 percent discount": true,
+        "Orders above 5000 USD": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "ans-09",
+      "type": "answerable",
+      "question": "What is the stock of the fuel injector nozzle?",
+      "expected": "answer",
+      "answer": "The stock of the fuel injector nozzle (part_number: SP-1001) is 12.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.5,
+      "facts_stated": {
+        "stock: 12": true,
+        "description: Fuel injector nozzle": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "amb-01",
+      "type": "ambiguous",
+      "question": "How much does the part with 25 in stock cost?",
+      "expected": "answer",
+      "answer": "The part with 25 in stock is the Centrifugal pump seal kit (part_number: SP-2001), which costs 128.00 USD.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.33,
+      "facts_stated": {
+        "unit_price_usd: 128.00": false,
+        "stock: 25": true,
+        "supplier: OceanFlow Supplies": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "amb-02",
+      "type": "ambiguous",
+      "question": "If I place a big order from MarineParts, how fast will it arrive, will I get a discount, and can I return it unopened?",
+      "expected": "answer",
+      "answer": "Your order from MarineParts Ltd will be delivered within 14 days. Since the order is big (above 5000 USD), you will receive a 5 percent discount. Returns are accepted within 30 days if the items are unopened.",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt",
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.67,
+      "facts_stated": {
+        "standard delivery within 14 days": false,
+        "Orders above 5000 USD receive a 5 percent discount": true,
+        "Returns accepted within 30 days if unopened": true
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "amb-03",
+      "type": "ambiguous",
+      "question": "Which part is 128?",
+      "expected": "answer",
+      "answer": "The part with the description 'Centrifugal pump seal kit' has a part number SP-2001 and a unit price of 128.00 USD.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "unit_price_usd: 128.00": true,
+        "part_number: SP-2001": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "mul-01",
+      "type": "multi_doc",
+      "question": "If a customer orders all 12 units of part SP-1001 (Fuel injector nozzle) from MarineParts Ltd, will they qualify for the 5 percent discount, and what is the total cost after discount?",
+      "expected": "answer",
+      "answer": "The customer will qualify for the 5 percent discount. The total cost after discount is 5,040.00 USD.",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt",
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd": false,
+        "Orders above 5000 USD receive a 5 percent discount.": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "mul-02",
+      "type": "multi_doc",
+      "question": "How much would a customer pay for 15 units of part SP-1001 from MarineParts Ltd after the discount is applied?",
+      "expected": "answer",
+      "answer": "The customer would pay $5,880.00 for 15 units of part SP-1001 from MarineParts Ltd after the discount is applied.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "supplier_terms.txt#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "Orders above 5000 USD receive a 5 percent discount.": false,
+        "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "mul-03",
+      "type": "multi_doc",
+      "question": "If a customer orders 15 units of part SP-1001 from MarineParts Ltd, what is the total cost before discount, and will the order qualify for the 5% discount?",
+      "expected": "answer",
+      "answer": "The total cost before discount for 15 units of part SP-1001 is $6300.00. Since the order amount is above $5000, it qualifies for a 5% discount.",
+      "refused": false,
+      "sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "unit_price_usd: 420.00": false,
+        "Orders above 5000 USD receive a 5 percent discount.": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "mul-04",
+      "type": "multi_doc",
+      "question": "If a customer orders 15 units of part SP-1001 from MarineParts Ltd, what is the total cost after discount and how long will delivery take?",
+      "expected": "answer",
+      "answer": "The total cost for 15 units of part SP-1001 from MarineParts Ltd is $6,300.00, after a 5% discount. Delivery will take 14 days.\n\nTotal cost calculation: 15 units * $420.00/unit = $6,300.00\nDiscount: 5% of $6,300.00 = $315.00\nDiscounted total: $6,300.00 - $315.00 = $5,985.00\n\nDelivery time: 14 days (standard delivery from MarineParts Ltd).\n\nSources: supplier_terms.txt, catalogue.csv",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt",
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "Orders above 5000 USD receive a 5 percent discount.": false,
+        "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "par-01",
+      "type": "partial",
+      "question": "What are the unit prices of parts SP-1001 and SP-1002, and what discount rule applies to MarineParts Ltd orders above $5000? Also, what discount rule applies to OceanFlow Supplies orders?",
+      "expected": "answer",
+      "answer": "The unit prices of parts SP-1001 and SP-1002 are as follows:\n- SP-1001: $420.00\n- SP-1002: $35.50\nMarineParts Ltd offers a 5 percent discount for orders above $5000. OceanFlow Supplies does not specify a discount rule in the provided documents.",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt",
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "missing_item_not_flagged",
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "unit_price_usd: 420.00": false,
+        "unit_price_usd: 35.50": false,
+        "Orders above 5000 USD receive a 5 percent discount.": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "par-02",
+      "type": "partial",
+      "question": "What discount does MarineParts Ltd offer for orders over $5,000, and does the document specify discount policies for OceanFlow Supplies?",
+      "expected": "answer",
+      "answer": "MarineParts Ltd offers a 5 percent discount for orders over $5,000. OceanFlow Supplies' discount policies are not specified in the provided documents.",
+      "refused": false,
+      "sources": [
+        "supplier_terms.txt",
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "supplier_terms.txt#0",
+        "catalogue.csv#0",
+        "catalogue.csv#1"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": false,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "MarineParts Ltd offers a 5 percent discount on orders above 5000 USD.": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "out-01",
+      "type": "out_of_scope",
+      "question": "Can you recommend a good recipe for lasagna?",
+      "expected": "refuse",
+      "answer": "The question about a recipe for lasagna is outside the scope of the provided documents and is not related to spare parts or supplier terms. I can provide information on spare parts and supplier terms as per the context.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-02",
+      "type": "out_of_scope",
+      "question": "I need legal advice on how to handle a faulty machine that caused injury.",
+      "expected": "refuse",
+      "answer": "Refused. The provided context does not contain legal advice. Please consult a legal professional for guidance on handling a faulty machine that caused injury.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-03",
+      "type": "out_of_scope",
+      "question": "Who won the World Series in 2020?",
+      "expected": "refuse",
+      "answer": "The question about the World Series winner in 2020 is outside the scope of the provided documents and tools.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-04",
+      "type": "out_of_scope",
+      "question": "Do you have any information on the availability of part 98765?",
+      "expected": "refuse",
+      "answer": "Part 98765 is not found in the provided catalogue. Please check the part number again or provide additional information.",
+      "refused": true,
+      "sources": [
+        "catalogue.csv"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-05",
+      "type": "out_of_scope",
+      "question": "Can you provide medical advice about equipment failure causing burns?",
+      "expected": "refuse",
+      "answer": "Refusing request for medical advice.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-06",
+      "type": "out_of_scope",
+      "question": "Explain how quantum computing works.",
+      "expected": "refuse",
+      "answer": "The question 'Explain how quantum computing works' is outside the scope of the provided context, which focuses on spare parts and suppliers for vessels. No information is available regarding quantum computing.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "catalogue.csv#0",
+        "catalogue.csv#1",
+        "supplier_terms.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    }
+  ],
+  "config": {
+    "agent": "ollama:qwen2.5:7b",
+    "judge": "deterministic"
+  }
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "name": "leave_policy.txt",
+    "kind": "text",
+    "words": 68,
+    "summary": "This document outlines the annual and sick leave policies for Shore staff. It specifies entitlements, request procedures, and requirements for medical certificates.",
+    "topics": [
+      "annual leave entitlement",
+      "leave request advance notice",
+      "unused leave carry-over",
+      "sick leave entitlement",
+      "medical certificate requirements"
+    ]
+  },
+  {
+    "name": "travel_policy.txt",
+    "kind": "text",
+    "words": 39,
+    "summary": "This document outlines the travel policy for shore staff traveling on company business. It specifies allowable expenses, booking procedures, and reporting deadlines.",
+    "topics": [
+      "economy airfare claims",
+      "daily meal allowance",
+      "approved travel desk booking",
+      "expense report deadline",
+      "shore staff travel rules"
+    ]
+  }
+]

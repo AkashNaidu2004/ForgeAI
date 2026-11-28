@@ -9,3 +9,4 @@ PASSAGE B (file {{source_b}}):
 
 Rules: the question must need at least one fact from A and at least one fact from B. Key facts are copied EXACTLY from the passages. If the passages are unrelated and no natural combined question exists, return {"skip": true}.
 Return JSON only: {"skip": false, "question": "...", "key_facts": ["fact from A", "fact from B"], "reference_answer": "one or two sentences using only the passages"}
+Use atomic necessary facts, not full rows. Avoid unsupported assumptions about fulfillment or eligibility. For a quantity exceeding documented stock, explicitly ask about availability and require a warning. Include the calculated result in the reference answer.

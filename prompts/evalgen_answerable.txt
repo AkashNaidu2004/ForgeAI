@@ -11,3 +11,4 @@ STYLE: {{style}}
 
 Rules: do not copy sentences from the passage into the question. Pick 1 to 3 key facts (short, copied EXACTLY from the passage: numbers, names, limits) that a correct answer must contain. If the passage has no useful testable fact, return {"skip": true}.
 Return JSON only: {"skip": false, "question": "...", "key_facts": ["..."], "reference_answer": "one or two sentences using only the passage"}
+Scope: {{scope}}. Prefer this under-tested topic if supported: {{topic}}. Keep the entity identifiable even in ambiguous style. Do not ask for unrelated details. Each key fact must be necessary and present in the reference answer. Never use a whole CSV row as one fact.

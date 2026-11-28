@@ -1,0 +1,6 @@
+TASK: evalgen_evidence_multi
+Create up to {{count}} distinct two-part questions within the scope. Each question must ask for one fact from A and one from B. Independent subquestions joined with 'and' are acceptable; do not assume a relationship between policies. Select exact short complete evidence sentences or clauses first, then write the question. Do not put answers in the question. Return JSON {"cases":[{"question":"...","fact_a":"exact substring of A","fact_b":"exact substring of B"}]}. No paraphrasing facts. Avoid prior questions and facts already tested.
+Scope: {{scope}}
+A: {{a}}
+B: {{b}}
+Prior: {{prior}}

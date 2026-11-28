@@ -1,0 +1,176 @@
+{
+  "agent_name": "ship_engineer_assistant",
+  "scope": "This assistant helps ship engineers find spare part numbers, check prices, stock availability, and supplier terms, and calculate order totals with applicable discounts. It stops at providing real-time notifications or handling multiple currencies.",
+  "audience": "Ship engineers who need to manage spare parts and suppliers for their vessels.",
+  "tone": "Professional and informative, tailored to the technical needs of ship engineers.",
+  "must_answer_topics": [
+    {
+      "topic": "Part lookup",
+      "example_question": "What is the part number for a marine engine piston ring?"
+    },
+    {
+      "topic": "Price inquiry",
+      "example_question": "How much does a 10-pack of propeller shaft bolts cost from Supplier A?"
+    },
+    {
+      "topic": "Stock check",
+      "example_question": "Is there any stock left for the 2023 model propeller?"
+    },
+    {
+      "topic": "Supplier terms",
+      "example_question": "What are the delivery times for emergency orders from Supplier B?"
+    },
+    {
+      "topic": "Order total calculation",
+      "example_question": "If I order 50 units of the 2023 model propeller at the current price, what will the total cost be with the discount?"
+    }
+  ],
+  "must_refuse_topics": [
+    "Legal advice",
+    "Medical information",
+    "Personal data",
+    "Real-time stock updates"
+  ],
+  "tool_signals": {
+    "needs_calculation": true,
+    "needs_live_data": false,
+    "needs_table_lookup": true,
+    "needs_current_date": false
+  },
+  "brief": "Build an assistant for ship engineers to look up spare part numbers, prices, stock availability and supplier terms, and calculate order totals with applicable supplier discounts. Do not invent prices, discounts or supplier policies.",
+  "docs_path": "samples/ship_spares",
+  "clarifications": [
+    {
+      "question": "Is the assistant expected to handle multiple currencies besides USD?",
+      "why": "To determine if the assistant needs to support currency conversion.",
+      "default": "Assume USD is the only currency.",
+      "answer": "Assume USD is the only currency.",
+      "answer_source": "assumed default"
+    },
+    {
+      "question": "Should the assistant provide alerts or notifications for low stock levels?",
+      "why": "To understand if real-time notifications are required for inventory management.",
+      "default": "Assume no real-time notifications are needed.",
+      "answer": "Assume no real-time notifications are needed.",
+      "answer_source": "assumed default"
+    },
+    {
+      "question": "Will the assistant need to support different units of measurement for part descriptions?",
+      "why": "To ensure the assistant can handle various measurement units.",
+      "default": "Assume all parts use the same unit of measurement.",
+      "answer": "Assume all parts use the same unit of measurement.",
+      "answer_source": "assumed default"
+    },
+    {
+      "question": "How should the assistant handle cases where a part is not in stock but can be ordered?",
+      "why": "To clarify the process for out-of-stock parts.",
+      "default": "Assume the assistant will inform the user that the part is out of stock.",
+      "answer": "Assume the assistant will inform the user that the part is out of stock.",
+      "answer_source": "assumed default"
+    },
+    {
+      "question": "Does the assistant need to support multiple languages for communication with users?",
+      "why": "To determine if language support is required.",
+      "default": "Assume the assistant will only support one language.",
+      "answer": "Assume the assistant will only support one language.",
+      "answer_source": "assumed default"
+    }
+  ],
+  "partial_notes": {
+    "Part lookup": "supported: lookup for part number SP-1001; NOT supported (say so, never guess): part number for a marine engine piston ring, specific unit price and stock information for this part, supplier information for this part",
+    "Stock check": "supported: looking up rows is supported if the table's documents appear among the passages; NOT supported (say so, never guess): unspecified",
+    "Supplier terms": "supported: Delivery within 21 days for OceanFlow Supplies; NOT supported (say so, never guess): Delivery times for emergency orders from Supplier B, including the extra 15 percent charge for air freight"
+  },
+  "ungrounded_requests": [],
+  "groundability": {
+    "status": "partial",
+    "score": 0.7,
+    "topics": [
+      {
+        "topic": "Part lookup",
+        "example_question": "What is the part number for a marine engine piston ring?",
+        "verdict": "partial",
+        "llm_verdict": "partial",
+        "coverage": 0.43,
+        "coverage_best_chunk": 0.43,
+        "sources_seen": [
+          "catalogue.csv",
+          "supplier_terms.txt"
+        ],
+        "evidence": "unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd",
+        "evidence_verified": true,
+        "source": "catalogue.csv",
+        "supported": "lookup for part number SP-1001",
+        "missing": "part number for a marine engine piston ring, specific unit price and stock information for this part, supplier information for this part"
+      },
+      {
+        "topic": "Price inquiry",
+        "example_question": "How much does a 10-pack of propeller shaft bolts cost from Supplier A?",
+        "verdict": "grounded",
+        "llm_verdict": "grounded",
+        "coverage": 0.2,
+        "coverage_best_chunk": 0.2,
+        "sources_seen": [
+          "catalogue.csv",
+          "supplier_terms.txt"
+        ],
+        "evidence": "Orders above 5000 USD receive a 5 percent discount.",
+        "evidence_verified": true,
+        "source": "supplier_terms.txt",
+        "supported": "looking up rows in CSV tables, arithmetic operations with input numbers, rates and rules",
+        "missing": ""
+      },
+      {
+        "topic": "Stock check",
+        "example_question": "Is there any stock left for the 2023 model propeller?",
+        "verdict": "partial",
+        "llm_verdict": "grounded",
+        "coverage": 0.12,
+        "coverage_best_chunk": 0.12,
+        "sources_seen": [
+          "catalogue.csv",
+          "supplier_terms.txt"
+        ],
+        "evidence": "stock: 12; supplier: MarineParts Ltd",
+        "evidence_verified": true,
+        "source": "catalogue.csv",
+        "supported": "looking up rows is supported if the table's documents appear among the passages",
+        "missing": ""
+      },
+      {
+        "topic": "Supplier terms",
+        "example_question": "What are the delivery times for emergency orders from Supplier B?",
+        "verdict": "partial",
+        "llm_verdict": "partial",
+        "coverage": 0.71,
+        "coverage_best_chunk": 0.57,
+        "sources_seen": [
+          "catalogue.csv",
+          "supplier_terms.txt"
+        ],
+        "evidence": "Delivery within 21 days.",
+        "evidence_verified": false,
+        "source": "OceanFlow Supplies terms",
+        "supported": "Delivery within 21 days for OceanFlow Supplies",
+        "missing": "Delivery times for emergency orders from Supplier B, including the extra 15 percent charge for air freight"
+      },
+      {
+        "topic": "Order total calculation",
+        "example_question": "If I order 50 units of the 2023 model propeller at the current price, what will the total cost be with the discount?",
+        "verdict": "grounded",
+        "llm_verdict": "grounded",
+        "coverage": 0.29,
+        "coverage_best_chunk": 0.14,
+        "sources_seen": [
+          "catalogue.csv",
+          "supplier_terms.txt"
+        ],
+        "evidence": "Orders above 5000 USD receive a 5 percent discount.",
+        "evidence_verified": true,
+        "source": "supplier_terms.txt",
+        "supported": "Calculating total cost with discount, looking up unit prices and supplier information",
+        "missing": ""
+      }
+    ]
+  }
+}

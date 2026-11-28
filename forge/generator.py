@@ -106,7 +106,9 @@ def build_sections(req, persona, tools, docs):
     return s
 
 
-ORDER = ["role", "scope", "grounding_rules", "refusal_rules", "partial_rules", "tool_rules", "style_rules"]
+# Sections added later by the optimizer (forge/optimizer.py) sit between the generated rules and the style block.
+PATCH_SECTIONS = ["answer_policy", "numbers_policy", "completeness_policy", "citation_policy", "contract_policy"]
+ORDER = ["role", "scope", "grounding_rules", "refusal_rules", "partial_rules", "tool_rules"] + PATCH_SECTIONS + ["style_rules"]
 
 
 def render_system_prompt(sections):

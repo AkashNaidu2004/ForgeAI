@@ -1,0 +1,21 @@
+LIBRARY BORROWING POLICY
+
+Students may borrow up to 4 books at a time.
+
+Faculty members may borrow up to 8 books at a time.
+
+The standard student borrowing period is 14 days.
+
+The faculty borrowing period is 30 days.
+
+Overdue books incur a fine of INR 5 per book per day.
+
+Books may be renewed once for an additional 7 days if no reservation exists.
+
+Lost books must be replaced or paid for at their replacement cost.
+
+Reference books cannot be borrowed.
+
+The library operates Monday to Saturday from 9 AM to 6 PM.
+
+Membership and borrowing disputes must be referred to the librarian.

@@ -6,3 +6,8 @@ __pycache__/
 venv/
 .venv/
 runs/test_*/
+
+# API budget state and response cache (local only; never commit)
+.forge_budget.json
+.forge_budget.json.tmp
+.forge_cache/

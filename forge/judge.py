@@ -10,6 +10,7 @@ Defences against known LLM-judge failure modes:
                        anything; if it is unreliable the run falls back to deterministic checks only"""
 import json, random, re
 from .prompts import render
+from .budget import InfraError
 from .textmatch import fact_in_text, numbers_in, norm_ws, derivable
 
 REFUSAL_RE = re.compile(r"\b(cannot|can't|can not|unable to|not (?:contained|covered|mentioned|available|provided|found|documented|specified)|no information|outside (?:the |my )?scope|don't have|do not have)\b", re.I)
@@ -31,15 +32,15 @@ def llm_check(case, answer, context_text, llm):
     na, stated = norm_ws(answer), {}
     for i, f in enumerate(facts):
         e = next((x for x in entries if isinstance(x, dict) and norm_ws(str(x.get("fact", ""))) == norm_ws(f)),
-                 entries[i] if i < len(entries) and isinstance(entries[i], dict) else {})
+                 {})
         q = norm_ws(str(e.get("quote", "")))
-        stated[f] = bool(e.get("stated")) and bool(q) and q in na      # quote must really occur in the answer
+        stated[f] = e.get("stated") is True and bool(q) and q in na and all(n in numbers_in(q) for n in numbers_in(f))      # quote must really occur in the answer
     ctx_nums = set(numbers_in(context_text))
     claims = []
     for c in r.get("unsupported_claims", []) if isinstance(r.get("unsupported_claims"), list) else []:
         c = str(c).strip()
         nums = [n for n in numbers_in(c) if n not in IGNORE_NUMS]
-        if c and not (nums and all(n in ctx_nums for n in nums)):         # overrule over-flagging of numbers that exist
+        if c and not fact_in_text(c, context_text, cov=1.0):         # overrule over-flagging of numbers that exist
             claims.append(c)
     return {"facts": stated, "unsupported_claims": claims, "flags_missing": bool(r.get("flags_missing"))}
 
@@ -88,6 +89,8 @@ def judge_case(case, res, llm=None, doc_names=()):
             out["judge_used"] = True
             for f in facts:
                 stated[f] = stated[f] or chk["facts"].get(f, False)
+        except InfraError:
+            raise                      # do not silently downgrade to deterministic-only scoring
         except Exception as e:
             sig.append(f"judge_error:{type(e).__name__}")
     correct = all(stated.values()) and bool(facts)
@@ -96,7 +99,7 @@ def judge_case(case, res, llm=None, doc_names=()):
 
     missing_ok = True
     if case.get("missing_item"):
-        missing_ok = looks_like_refusal(ans) or bool(chk and chk["flags_missing"])
+        missing_ok = bool(chk and chk["flags_missing"]) if chk is not None else (looks_like_refusal(ans) and fact_in_text(case["missing_item"], ans))
         if not missing_ok:
             sig.append("missing_item_not_flagged")
     bad_cite = [c for c in cited if doc_names and c not in doc_names]
@@ -106,7 +109,7 @@ def judge_case(case, res, llm=None, doc_names=()):
     if not source_ok:
         sig.append("expected_source_not_cited")
 
-    small = numbers_in(case["question"] + " " + " ".join(facts) + " " + tool_text)
+    small = numbers_in(case["question"] + " " + tool_text)
     base = small + numbers_in(ctx_text)       # question/fact/tool numbers first, then every number in the retrieved context
     suspects = [n for n in numbers_in(ans) if n not in IGNORE_NUMS and n not in set(base)
                 and not derivable(float(n), base, base)]
@@ -146,6 +149,8 @@ def run_canaries(cases, llm, n=3, seed=3):
                 all_stated = bool(k["facts"]) and all(k["facts"].values())
                 ok = {"gold": all_stated and not k["unsupported_claims"], "wrong": not all_stated,
                       "padded_wrong": not all_stated, "fabricated": bool(k["unsupported_claims"])}[kind]
+            except InfraError:
+                raise
             except Exception:
                 ok = False
             rows.append({"case": c["id"], "kind": kind, "correct": ok})
@@ -154,4 +159,4 @@ def run_canaries(cases, llm, n=3, seed=3):
     for r in rows:
         by.setdefault(r["kind"], []).append(r["correct"])
     return {"accuracy": round(acc, 2), "n": len(rows), "by_kind": {k: round(sum(v) / len(v), 2) for k, v in by.items()},
-            "reliable": bool(rows) and acc >= 0.75}
+            "reliable": bool(rows) and acc >= 0.75 and all(sum(v) / len(v) >= 2/3 for v in by.values())}

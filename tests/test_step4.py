@@ -94,7 +94,7 @@ good_c = run_canaries(cases, llm, n=3)
 assert good_c["accuracy"] == 1.0 and good_c["reliable"], good_c
 bias = get_llm("judge"); bias.mock_fn = mock_judge("biased")
 bad_c = run_canaries(cases, bias, n=3)
-assert not bad_c["reliable"] and bad_c["by_kind"]["padded_wrong"] == 0.0, bad_c     # the biased judge is caught
+assert not bad_c["reliable"] and bad_c["by_kind"]["fabricated"] == 0.0, bad_c     # the biased judge is caught
 
 # ---------- E. run_eval + scorecard with a stub agent
 class Stub:
@@ -156,7 +156,7 @@ def gen_mock(m):
 g = get_llm("judge"); g.mock_fn = gen_mock
 req = {"scope": "s", "must_answer_topics": [{"topic": "allowances", "example_question": "x"}], "must_refuse_topics": ["salaries"],
        "partial_notes": {"allowances": "supported: days; NOT supported: bonus", "fees": "supported: fees; NOT supported: refunds"}}
-es = generate_evalset(req, load_folder(tmp), g, n=24)
+es = generate_evalset(req, load_folder(tmp), g, n=24, verify=False)
 m, cs = es["meta"], es["cases"]
 assert m["n_cases"] >= 20, m
 assert {"answerable", "ambiguous", "multi_doc", "partial", "out_of_scope"} <= set(m["by_type"]), m["by_type"]

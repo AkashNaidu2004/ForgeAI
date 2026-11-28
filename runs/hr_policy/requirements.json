@@ -1,0 +1,173 @@
+{
+  "agent_name": "shore_hr_travel_assistant",
+  "scope": "The assistant provides information on annual leave entitlements and the procedures for requesting leave. It also covers sick leave requirements, travel expense allowances, and expense reporting deadlines.",
+  "audience": "Shore staff employees",
+  "tone": "Professional, clear, and friendly",
+  "must_answer_topics": [
+    {
+      "topic": "Annual leave entitlements",
+      "example_question": "How many days of annual leave am I entitled to this year?"
+    },
+    {
+      "topic": "Leave request procedures",
+      "example_question": "How far in advance do I need to request my annual leave?"
+    },
+    {
+      "topic": "Sick leave requirements",
+      "example_question": "Do I need a medical certificate for a two-day sick leave?"
+    },
+    {
+      "topic": "Travel expense allowances",
+      "example_question": "What is the daily meal allowance for business travel?"
+    },
+    {
+      "topic": "Expense reporting deadlines",
+      "example_question": "When is the deadline to submit my travel expense report?"
+    }
+  ],
+  "must_refuse_topics": [
+    "Requests from employees not classified as shore staff",
+    "Flight booking requests that violate travel policy (e.g., business class)",
+    "HR policy questions outside of leave and travel (e.g., benefits, code of conduct)",
+    "Direct execution of flight bookings or financial transactions",
+    "Flight booking procedures (not covered by the documents)"
+  ],
+  "tool_signals": {
+    "needs_calculation": false,
+    "needs_live_data": false,
+    "needs_table_lookup": false,
+    "needs_current_date": false
+  },
+  "brief": "I need an assistant that answers HR policy questions for shore staff, and can also book flights",
+  "docs_path": "samples/hr_policy",
+  "clarifications": [
+    {
+      "question": "Should the assistant strictly refuse to book flights for staff who are not classified as 'shore staff'?",
+      "why": "The brief specifies 'shore staff' but does not explicitly state whether the assistant should deny service to other employee types or if the scope is limited to this group only.",
+      "default": "Yes, the assistant will only serve shore staff and politely decline requests from other employee categories.",
+      "answer": "Yes, the assistant will only serve shore staff and politely decline requests from other employee categories.",
+      "answer_source": "assumed default"
+    },
+    {
+      "question": "If a user asks for a flight booking that violates the travel policy (e.g., requesting business class), should the assistant refuse the booking or escalate to a human agent?",
+      "why": "The documents define allowable expenses and booking procedures but do not specify the assistant's behavior when a request is non-compliant.",
+      "default": "The assistant will refuse the booking and explain the policy violation, without escalating to a human.",
+      "answer": "The assistant will refuse the booking and explain the policy violation, without escalating to a human.",
+      "answer_source": "assumed default"
+    },
+    {
+      "question": "Does the assistant have the technical capability to execute flight bookings directly, or should it only provide the link/instructions to the approved travel desk?",
+      "why": "The brief says 'can also book flights,' but the documents mention 'approved travel desk booking,' creating ambiguity about whether the AI performs the transaction or just guides the user.",
+      "default": "The assistant will provide the necessary information and direct the user to the approved travel desk for the actual booking transaction.",
+      "answer": "The assistant will provide the necessary information and direct the user to the approved travel desk for the actual booking transaction.",
+      "answer_source": "assumed default"
+    },
+    {
+      "question": "What is the preferred tone for the assistant when answering policy questions: strictly formal/legalistic or friendly and conversational?",
+      "why": "The brief and documents do not specify the communication style or tone of voice for the assistant.",
+      "default": "The assistant will use a professional, clear, and friendly tone.",
+      "answer": "The assistant will use a professional, clear, and friendly tone.",
+      "answer_source": "assumed default"
+    },
+    {
+      "question": "Should the assistant answer questions about HR policies other than leave (e.g., benefits, code of conduct) if they are not covered in the provided documents?",
+      "why": "The brief mentions 'HR policy questions' generally, but the documents only cover leave and travel, so the boundary of 'HR policy' needs clarification.",
+      "default": "The assistant will only answer questions related to the provided documents (leave and travel) and state that it cannot answer other HR topics.",
+      "answer": "The assistant will only answer questions related to the provided documents (leave and travel) and state that it cannot answer other HR topics.",
+      "answer_source": "assumed default"
+    }
+  ],
+  "partial_notes": {},
+  "ungrounded_requests": [
+    {
+      "topic": "Flight booking procedures",
+      "example_question": "How do I book a flight for my upcoming business trip?",
+      "verdict": "ungrounded",
+      "llm_verdict": "ungrounded",
+      "coverage": 0.12,
+      "evidence": "",
+      "evidence_verified": false,
+      "source": "",
+      "missing": "flight booking procedure details"
+    }
+  ],
+  "original_scope": "The assistant answers questions regarding shore staff annual and sick leave policies, as well as company travel rules for business trips. It provides guidance on flight booking procedures by directing users to the approved travel desk, but does not execute bookings itself. It strictly limits its responses to the provided leave and travel policy documents.",
+  "scope_repair": {
+    "method": "llm",
+    "removed": [
+      "Flight booking procedures"
+    ]
+  },
+  "groundability": {
+    "status": "partial",
+    "score": 0.83,
+    "topics": [
+      {
+        "topic": "Annual leave entitlements",
+        "example_question": "How many days of annual leave am I entitled to this year?",
+        "verdict": "grounded",
+        "llm_verdict": "grounded",
+        "coverage": 0.62,
+        "evidence": "Shore staff are entitled to 24 days of paid annual leave per calendar year.",
+        "evidence_verified": true,
+        "source": "leave_policy.txt",
+        "missing": ""
+      },
+      {
+        "topic": "Leave request procedures",
+        "example_question": "How far in advance do I need to request my annual leave?",
+        "verdict": "grounded",
+        "llm_verdict": "grounded",
+        "coverage": 0.38,
+        "evidence": "Leave must be requested at least 14 days in advance through the HR portal.",
+        "evidence_verified": true,
+        "source": "leave_policy.txt",
+        "missing": ""
+      },
+      {
+        "topic": "Sick leave requirements",
+        "example_question": "Do I need a medical certificate for a two-day sick leave?",
+        "verdict": "grounded",
+        "llm_verdict": "grounded",
+        "coverage": 0.5,
+        "evidence": "A medical certificate is required for absences longer than 2 consecutive days.",
+        "evidence_verified": true,
+        "source": "leave_policy.txt",
+        "missing": ""
+      },
+      {
+        "topic": "Travel expense allowances",
+        "example_question": "What is the daily meal allowance for business travel?",
+        "verdict": "grounded",
+        "llm_verdict": "grounded",
+        "coverage": 0.86,
+        "evidence": "daily meal allowance of 40 USD",
+        "evidence_verified": true,
+        "source": "travel_policy.txt",
+        "missing": ""
+      },
+      {
+        "topic": "Flight booking procedures",
+        "example_question": "How do I book a flight for my upcoming business trip?",
+        "verdict": "ungrounded",
+        "llm_verdict": "ungrounded",
+        "coverage": 0.12,
+        "evidence": "",
+        "evidence_verified": false,
+        "source": "",
+        "missing": "flight booking procedure details"
+      },
+      {
+        "topic": "Expense reporting deadlines",
+        "example_question": "When is the deadline to submit my travel expense report?",
+        "verdict": "grounded",
+        "llm_verdict": "grounded",
+        "coverage": 0.22,
+        "evidence": "Expense reports are due within 30 days of return.",
+        "evidence_verified": true,
+        "source": "travel_policy.txt",
+        "missing": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,701 @@
+{
+  "agent": "runs/test_hr/agent_v0.json",
+  "scorecard": {
+    "n_cases": 22,
+    "passed": 19,
+    "pass_rate": 0.864,
+    "answer_correct_rate": 0.875,
+    "grounded_rate": 1.0,
+    "refusal_accuracy": 0.833,
+    "false_refusal_rate": 0.0,
+    "retrieval_hit_rate": 1.0,
+    "errors": 0,
+    "by_type": {
+      "multi_doc": {
+        "n": 3,
+        "passed": 3
+      },
+      "ambiguous": {
+        "n": 2,
+        "passed": 0
+      },
+      "answerable": {
+        "n": 11,
+        "passed": 11
+      },
+      "out_of_scope": {
+        "n": 6,
+        "passed": 5
+      }
+    },
+    "judge": {
+      "model": "llama3.2:3b",
+      "agent_model": "qwen2.5:7b",
+      "mode": "deterministic checks + LLM judge (quote-verified)",
+      "canaries": {
+        "accuracy": 0.92,
+        "n": 12,
+        "by_kind": {
+          "gold": 1.0,
+          "wrong": 1.0,
+          "padded_wrong": 1.0,
+          "fabricated": 0.67
+        },
+        "reliable": true
+      }
+    },
+    "failed_ids": [
+      "amb-01",
+      "amb-02",
+      "out-05"
+    ],
+    "seconds": 0.2
+  },
+  "results": [
+    {
+      "id": "mul-01",
+      "type": "multi_doc",
+      "question": "What is the annual leave entitlement for shore staff and what travel expense can they claim for airfare and meals?",
+      "expected": "answer",
+      "answer": "Shore staff are entitled to 24 days of paid annual leave per calendar year. They may claim economy airfare and a daily meal allowance of 40 USD for company business travel. Expense reports are due within 30 days of return.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt",
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Shore staff are entitled to 24 days of paid annual leave per calendar year.": true,
+        "Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD.": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "mul-02",
+      "type": "multi_doc",
+      "question": "How far in advance must leave be requested and how must hotel stays be booked?",
+      "expected": "answer",
+      "answer": "Leave must be requested at least 14 days in advance through the HR portal. Hotel stays must be booked through the approved travel desk.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt",
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Leave must be requested at least 14 days in advance through the HR portal.": true,
+        "Hotel stays must be booked through the approved travel desk.": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "mul-03",
+      "type": "multi_doc",
+      "question": "How many paid sick leave days are employees entitled to per year and within how many days must expense reports be submitted?",
+      "expected": "answer",
+      "answer": "Employees are entitled to 10 paid sick leave days per year. Expense reports are due within 30 days of return.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt",
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Employees receive 10 days of paid sick leave per year.": true,
+        "Expense reports are due within 30 days of return.": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "amb-01",
+      "type": "ambiguous",
+      "question": "How many days can I carry over?",
+      "expected": "answer",
+      "answer": "You can carry over up to 5 unused days of annual leave into the next year.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "Up to 5 unused days may be carried over into the next year.": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "amb-02",
+      "type": "ambiguous",
+      "question": "What do I need if I\u2019m sick for more than two days?",
+      "expected": "answer",
+      "answer": "If you are sick for more than two consecutive days, you need a medical certificate.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [
+        "facts_missing_from_answer"
+      ],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 0.0,
+      "facts_stated": {
+        "A medical certificate is required for absences longer than 2 consecutive days.": false
+      },
+      "refusal_ok": true,
+      "correct": false,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": false
+    },
+    {
+      "id": "ans-01",
+      "type": "answerable",
+      "question": "What type of airfare can Shore staff claim on company business?",
+      "expected": "answer",
+      "answer": "Shore staff travelling on company business may claim economy airfare.",
+      "refused": false,
+      "sources": [
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "economy airfare": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-02",
+      "type": "answerable",
+      "question": "What is the daily meal allowance for Shore staff traveling on company business?",
+      "expected": "answer",
+      "answer": "The daily meal allowance for Shore staff traveling on company business is 40 USD.",
+      "refused": false,
+      "sources": [
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "daily meal allowance of 40 USD": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-03",
+      "type": "answerable",
+      "question": "How should hotel stays be booked for Shore staff traveling on company business?",
+      "expected": "answer",
+      "answer": "Hotel stays must be booked through the approved travel desk.",
+      "refused": false,
+      "sources": [
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Hotel stays must be booked through the approved travel desk": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-04",
+      "type": "answerable",
+      "question": "When are expense reports due after return?",
+      "expected": "answer",
+      "answer": "Expense reports are due within 30 days of return.",
+      "refused": false,
+      "sources": [
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Expense reports are due within 30 days of return": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-05",
+      "type": "answerable",
+      "question": "Which travel expenses can Shore staff claim when traveling on company business?",
+      "expected": "answer",
+      "answer": "Shore staff can claim economy airfare and a daily meal allowance of 40 USD when traveling on company business.",
+      "refused": false,
+      "sources": [
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "economy airfare": true,
+        "daily meal allowance of 40 USD": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-06",
+      "type": "answerable",
+      "question": "What are the requirements for booking hotel stays and submitting expense reports for Shore staff traveling on company business?",
+      "expected": "answer",
+      "answer": "For Shore staff traveling on company business, hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return.",
+      "refused": false,
+      "sources": [
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Hotel stays must be booked through the approved travel desk": true,
+        "Expense reports are due within 30 days of return": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-07",
+      "type": "answerable",
+      "question": "Summarize the travel policy for Shore staff traveling on company business.",
+      "expected": "answer",
+      "answer": "Shore staff traveling on company business are entitled to claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return.",
+      "refused": false,
+      "sources": [
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "economy airfare": true,
+        "daily meal allowance of 40 USD": true,
+        "Hotel stays must be booked through the approved travel desk": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-08",
+      "type": "answerable",
+      "question": "How many paid sick leave days do employees receive each year, and what documentation is required for absences longer than two days?",
+      "expected": "answer",
+      "answer": "Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Employees receive 10 days of paid sick leave per year.": true,
+        "A medical certificate is required for absences longer than 2 consecutive days.": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-09",
+      "type": "answerable",
+      "question": "How many days of annual leave are Shore staff entitled to per calendar year, and how many unused days may be carried over?",
+      "expected": "answer",
+      "answer": "Shore staff are entitled to 24 days of paid annual leave per calendar year. Up to 5 unused days may be carried over into the next year.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Shore staff are entitled to 24 days of paid annual leave per calendar year.": true,
+        "Up to 5 unused days may be carried over into the next year.": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-10",
+      "type": "answerable",
+      "question": "What is the minimum notice period for requesting leave, and through which portal must it be submitted?",
+      "expected": "answer",
+      "answer": "The minimum notice period for requesting leave is 14 days in advance. Leave must be requested through the HR portal.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "Leave must be requested at least 14 days in advance.": true,
+        "Leave must be requested through the HR portal.": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "ans-11",
+      "type": "answerable",
+      "question": "What travel expense can Shore staff claim and what is the deadline for submitting expense reports?",
+      "expected": "answer",
+      "answer": "Shore staff can claim economy airfare and a daily meal allowance of 40 USD. Expense reports are due within 30 days of return.",
+      "refused": false,
+      "sources": [
+        "travel_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "travel_policy.txt#0",
+        "leave_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": true,
+      "retrieval_hit": true,
+      "facts_in_context": 1.0,
+      "fact_recall": 1.0,
+      "facts_stated": {
+        "economy airfare": true,
+        "Expense reports are due within 30 days of return": true
+      },
+      "refusal_ok": true,
+      "correct": true,
+      "grounded": true,
+      "source_ok": true,
+      "unsupported_numbers": [],
+      "unsupported_claims": [],
+      "passed": true
+    },
+    {
+      "id": "out-01",
+      "type": "out_of_scope",
+      "question": "What's the best way to train a dog to fetch?",
+      "expected": "refuse",
+      "answer": "The context does not contain information on training dogs to fetch. This question is outside the scope of the provided documents, which cover annual leave, sick leave, and travel policies.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-02",
+      "type": "out_of_scope",
+      "question": "How do I code a binary search in Python?",
+      "expected": "refuse",
+      "answer": "The question asks about coding a binary search in Python, which is outside the scope of the provided documents that cover leave and travel policies. I cannot provide a coding example here.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-03",
+      "type": "out_of_scope",
+      "question": "Who won the World Series in 2020?",
+      "expected": "refuse",
+      "answer": "The question about who won the World Series in 2020 is outside the scope of the provided documents and is not related to leave or travel policies. Refused.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-04",
+      "type": "out_of_scope",
+      "question": "Can you explain the plot of Inception?",
+      "expected": "refuse",
+      "answer": "The question about the plot of Inception is outside the scope of the provided documents, which cover leave and travel policies. Refused.",
+      "refused": true,
+      "sources": [],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    },
+    {
+      "id": "out-05",
+      "type": "out_of_scope",
+      "question": "What is the procedure for taking a leave of absence for a family emergency?",
+      "expected": "refuse",
+      "answer": "The procedure for taking a leave of absence for a family emergency is similar to requesting annual or sick leave. It must be requested at least 14 days in advance through the HR portal. If the leave is for a family emergency and the notice period cannot be met, the employee should still inform their manager and HR as soon as possible. A medical certificate or a written explanation may be required for the leave to be considered. Unused days may be carried over up to 5 days into the next year.",
+      "refused": false,
+      "sources": [
+        "leave_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [
+        "answered_unanswerable",
+        "refusal_text_without_flag"
+      ],
+      "judge_used": false,
+      "refusal_ok": false,
+      "correct": null,
+      "grounded": null,
+      "passed": false
+    },
+    {
+      "id": "out-06",
+      "type": "out_of_scope",
+      "question": "How can I apply for unpaid leave?",
+      "expected": "refuse",
+      "answer": "The context provided does not mention unpaid leave. The policy covers annual and sick leave only. For any inquiries regarding unpaid leave, please contact the HR department directly.",
+      "refused": true,
+      "sources": [
+        "leave_policy.txt"
+      ],
+      "tool_calls": [],
+      "retrieved": [
+        "leave_policy.txt#0",
+        "travel_policy.txt#0"
+      ],
+      "signals": [],
+      "judge_used": false,
+      "refusal_ok": true,
+      "correct": null,
+      "grounded": null,
+      "passed": true
+    }
+  ],
+  "config": {
+    "agent": "ollama:qwen2.5:7b",
+    "judge": "ollama:llama3.2:3b"
+  }
+}

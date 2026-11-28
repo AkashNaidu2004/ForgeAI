@@ -2,6 +2,7 @@
 import json, os, time
 from .agent import Agent, load_definition
 from .judge import judge_case, run_canaries
+from .budget import InfraError
 
 
 def scorecard(results, judge_info):
@@ -45,6 +46,8 @@ def run_eval(agent, cases, judge_llm=None, doc_names=(), canaries=3, log=print):
     for i, c in enumerate(cases, 1):
         try:
             res = agent.answer(c["question"])
+        except InfraError:
+            raise                      # quota / network problem: abort the stage, never score it as an agent failure
         except Exception as e:
             res = {"answer": "", "sources": [], "refused": False, "context": [], "tool_calls": [], "error": f"{type(e).__name__}: {e}"}
         r = judge_case(c, res, judge_llm, doc_names)

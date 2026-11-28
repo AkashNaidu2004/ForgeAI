@@ -1,0 +1,474 @@
+{
+  "meta": {
+    "verification_enabled": true,
+    "verification_audit": [
+      {
+        "question": "What is the supplier of the Fuel injector nozzle and what is the discount for orders above 5000 USD?",
+        "verification": [
+          {
+            "index": 0,
+            "valid": true,
+            "duplicate": false,
+            "reason": "The question clearly asks for both supplied facts, neither fact is unnecessary, the reference answers the whole question, and the question is within scope."
+          }
+        ]
+      },
+      {
+        "question": "What is the supplier of the Centrifugal pump seal kit and what is the standard delivery time of MarineParts Ltd?",
+        "verification": [
+          {
+            "index": 0,
+            "valid": true,
+            "duplicate": false,
+            "reason": "Both supplied facts are necessary for the question, the reference answers the whole question, and the question is within scope."
+          }
+        ]
+      },
+      {
+        "question": "What is the supplier of the Centrifugal pump seal kit?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "supplier: OceanFlow Supplies"
+          ],
+          "reference_answer": "The supplier of the Centrifugal pump seal kit is OceanFlow Supplies.",
+          "reason": "Candidate 1 has a correct reference answer for the supplier of the Centrifugal pump seal kit."
+        }
+      },
+      {
+        "question": "What is the unit price of the Fuel injector nozzle?",
+        "verification": {
+          "index": 1,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "unit_price_usd: 420.00"
+          ],
+          "reference_answer": "The unit price of the Fuel injector nozzle is $420.00.",
+          "reason": "Candidate 1 has a correct reference answer for the unit price of the Fuel injector nozzle."
+        }
+      },
+      {
+        "question": "What is the delivery time for OceanFlow Supplies?",
+        "verification": {
+          "index": 2,
+          "valid": false,
+          "duplicate": false,
+          "topic": "Stock check",
+          "key_facts": [],
+          "reference_answer": "",
+          "reason": "Unclear referent, could not determine the stock status of OceanFlow Supplies"
+        }
+      },
+      {
+        "question": "What is the unit price of the Fuel injector nozzle?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "unit_price_usd: 420.00"
+          ],
+          "reference_answer": "The unit price of the Fuel injector nozzle is $420.00.",
+          "reason": "The reference answer matches the key fact."
+        }
+      },
+      {
+        "question": "What is the delivery time for orders above 5000 USD?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "standard delivery within 14 days",
+            "orders above 5000 USD",
+            "5 percent discount"
+          ],
+          "reference_answer": "Orders above 5000 USD receive a 5 percent discount and have a standard delivery within 14 days.",
+          "reason": "This verdict is valid as the candidate's key facts match the reference answer and the candidate is not a duplicate."
+        }
+      },
+      {
+        "question": "What is the supplier of the Fuel injector nozzle?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "short evidence fact"
+          ],
+          "reference_answer": "MarineParts Ltd is the supplier of the Fuel injector nozzle.",
+          "reason": "The reference answer matches the evidence fact 'supplier: MarineParts Ltd'."
+        }
+      },
+      {
+        "question": "What is the price of the Lube oil filter?",
+        "verification": {
+          "index": 1,
+          "valid": false,
+          "duplicate": false,
+          "topic": "Price inquiry",
+          "key_facts": [
+            "short evidence fact"
+          ],
+          "reference_answer": "",
+          "reason": "The reference answer is missing for the question 'What is the price of the Lube oil filter?'."
+        }
+      },
+      {
+        "question": "What is the delivery time for emergency air freight from OceanFlow Supplies?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "short evidence fact"
+          ],
+          "reference_answer": "MarineParts Ltd offers standard delivery within 14 days. OceanFlow Supplies offers delivery within 21 days. Emergency air freight is available at an extra 15 percent charge.",
+          "reason": "The answer to the question is supported by evidence and appears in the reference."
+        }
+      },
+      {
+        "question": "What is the unit price of the Fuel injector nozzle?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "short evidence fact"
+          ],
+          "reference_answer": "The unit price of the Fuel injector nozzle is $420.00.",
+          "reason": "The unit price of the Fuel injector nozzle is $420.00. from catalogue.csv"
+        }
+      },
+      {
+        "question": "What is the supplier of the Fuel injector nozzle?",
+        "verification": {
+          "index": 1,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "short evidence fact"
+          ],
+          "reference_answer": "The supplier of the Fuel injector nozzle is MarineParts Ltd.",
+          "reason": "The supplier of the Fuel injector nozzle is MarineParts Ltd. from catalogue.csv"
+        }
+      },
+      {
+        "question": "What is the unit price of the Fuel injector nozzle?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "unit_price_usd: 420.00"
+          ],
+          "reference_answer": "The unit price of the Fuel injector nozzle is $420.00.",
+          "reason": "Valid reference answer, supported by evidence and within scope."
+        }
+      },
+      {
+        "question": "What is the delivery time for emergency air freight from OceanFlow Supplies?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "short evidence fact"
+          ],
+          "reference_answer": "MarineParts Ltd offers standard delivery within 14 days. OceanFlow Supplies offers delivery within 21 days. Emergency air freight is available at an extra 15 percent charge.",
+          "reason": "The reference answer correctly answers the question, including the delivery time for emergency air freight from OceanFlow Supplies."
+        }
+      },
+      {
+        "question": "What is the supplier of the Fuel injector nozzle?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "supplier: MarineParts Ltd"
+          ],
+          "reference_answer": "The supplier of the Fuel injector nozzle is MarineParts Ltd.",
+          "reason": "The reference answer matches the key facts."
+        }
+      },
+      {
+        "question": "What is the delivery time for MarineParts Ltd?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "standard delivery within 14 days"
+          ],
+          "reference_answer": "MarineParts Ltd offers standard delivery within 14 days.",
+          "reason": "The reference answer matches the key facts and is supported by evidence."
+        }
+      },
+      {
+        "question": "What is the unit price of the part number SP-1001?",
+        "verification": {
+          "valid": true,
+          "duplicate": false,
+          "topic": "Part lookup",
+          "key_facts": [
+            "part_number: SP-1001; unit_price_usd: 420.00"
+          ],
+          "reference_answer": "420.00",
+          "reason": "The unit price of the part number SP-1001 is 420.00 USD, as stated in the reference."
+        }
+      },
+      {
+        "question": "What is the discount percentage for orders above 5000 USD?",
+        "verification": {
+          "valid": false,
+          "duplicate": false,
+          "topic": "Order total calculation",
+          "key_facts": [
+            "Orders above 5000 USD receive a 5 percent discount."
+          ],
+          "reference_answer": "The discount percentage for orders above 5000 USD is 5 percent.",
+          "reason": "The question asks for the discount percentage for orders above 5000 USD, but the provided facts only mention a 5 percent discount for orders above 5000 USD without specifying the discount for emergency air freight. The missing item is actually requested and not supported."
+        }
+      }
+    ],
+    "topic_coverage": {
+      "Part lookup": 4
+    },
+    "uncovered_topics": [
+      "Price inquiry",
+      "Stock check",
+      "Supplier terms",
+      "Order total calculation"
+    ],
+    "generated_with": "llama3.2:3b",
+    "seed": 7,
+    "n_cases": 12,
+    "target": 24,
+    "by_type": {
+      "multi_doc": 2,
+      "ambiguous": 2,
+      "answerable": 2,
+      "out_of_scope": 6
+    },
+    "prompts": [
+      "prompts/evalgen_answerable.txt",
+      "prompts/evalgen_multi.txt",
+      "prompts/evalgen_partial.txt",
+      "prompts/evalgen_refuse.txt",
+      "prompts/evalgen_verify.txt",
+      "prompts/evalgen_batch.txt",
+      "prompts/evalgen_verify_batch.txt",
+      "prompts/evalgen_evidence_multi.txt",
+      "prompts/evalgen_evidence_audit.txt"
+    ],
+    "required_types": [
+      "answerable",
+      "ambiguous",
+      "out_of_scope",
+      "multi_doc",
+      "partial"
+    ],
+    "model_calls": 39,
+    "dropped_by_validation": {
+      "invalid_evidence_pair": 19,
+      "fact_not_in_source": 4,
+      "reference_missing_fact": 4,
+      "missing_batch_verdict": 3,
+      "verification_rejected": 3,
+      "duplicate_question": 28,
+      "verification_invalid_facts": 5
+    }
+  },
+  "cases": [
+    {
+      "id": "mul-01",
+      "type": "multi_doc",
+      "question": "What is the supplier of the Fuel injector nozzle and what is the discount for orders above 5000 USD?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "supplier: MarineParts Ltd",
+        "Orders above 5000 USD receive a 5 percent discount."
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "supplier: MarineParts Ltd; Orders above 5000 USD receive a 5 percent discount.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies",
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "mul-02",
+      "type": "multi_doc",
+      "question": "What is the supplier of the Centrifugal pump seal kit and what is the standard delivery time of MarineParts Ltd?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "supplier: OceanFlow Supplies",
+        "standard delivery within 14 days"
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "supplier: OceanFlow Supplies; standard delivery within 14 days",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies",
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "amb-01",
+      "type": "ambiguous",
+      "question": "What is the supplier of the Centrifugal pump seal kit?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "supplier: OceanFlow Supplies"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The supplier of the Centrifugal pump seal kit is OceanFlow Supplies.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      },
+      "topic": "Part lookup"
+    },
+    {
+      "id": "amb-02",
+      "type": "ambiguous",
+      "question": "What is the delivery time for orders above 5000 USD?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "standard delivery within 14 days",
+        "orders above 5000 USD",
+        "5 percent discount"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "Orders above 5000 USD receive a 5 percent discount and have a standard delivery within 14 days.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      },
+      "topic": "Part lookup"
+    },
+    {
+      "id": "ans-01",
+      "type": "answerable",
+      "question": "What is the supplier of the Fuel injector nozzle?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "supplier: MarineParts Ltd"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The supplier of the Fuel injector nozzle is MarineParts Ltd.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      },
+      "topic": "Part lookup"
+    },
+    {
+      "id": "ans-02",
+      "type": "answerable",
+      "question": "What is the delivery time for MarineParts Ltd?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "standard delivery within 14 days"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "MarineParts Ltd offers standard delivery within 14 days.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      },
+      "topic": "Part lookup"
+    },
+    {
+      "id": "out-01",
+      "type": "out_of_scope",
+      "question": "What is the best way to cook a chicken breast?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-02",
+      "type": "out_of_scope",
+      "question": "Can you provide the part number for a specific sports car model?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-03",
+      "type": "out_of_scope",
+      "question": "How do I calculate the discount on a purchase of 100 units of a product?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "near_miss"
+    },
+    {
+      "id": "out-04",
+      "type": "out_of_scope",
+      "question": "Can you provide my personal medical history?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "sensitive"
+    },
+    {
+      "id": "out-05",
+      "type": "out_of_scope",
+      "question": "What is the stock availability for a product in a specific country?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-06",
+      "type": "out_of_scope",
+      "question": "Can you provide the supplier terms for a product with a specific warranty?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "near_miss"
+    }
+  ]
+}

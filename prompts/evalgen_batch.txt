@@ -1,0 +1,4 @@
+TASK: evalgen_batch
+Produce up to {{count}} distinct evaluation cases. The task below describes one case; instead return a JSON object {"cases":[...]} containing separate case objects with question, key_facts, reference_answer and skip. Use different requested facts or entities, not paraphrases. Each key fact must be short and necessary and occur in both the evidence and reference answer. Use natural combined requests for multi-document cases, not unsupported assumptions. Previously accepted cases (do not repeat): {{prior}}
+TASK DETAILS:
+{{task}}

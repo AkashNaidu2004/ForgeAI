@@ -1,0 +1,410 @@
+{
+  "meta": {
+    "generated_with": "openai/gpt-oss-20b",
+    "seed": 7,
+    "n_cases": 24,
+    "target": 24,
+    "by_type": {
+      "answerable": 9,
+      "ambiguous": 3,
+      "multi_doc": 4,
+      "partial": 2,
+      "out_of_scope": 6
+    },
+    "prompts": [
+      "prompts/evalgen_answerable.txt",
+      "prompts/evalgen_multi.txt",
+      "prompts/evalgen_partial.txt",
+      "prompts/evalgen_refuse.txt"
+    ],
+    "dropped_by_validation": {
+      "near_miss_maybe_answerable": 1
+    }
+  },
+  "cases": [
+    {
+      "id": "ans-01",
+      "type": "answerable",
+      "question": "How much does the Fuel injector nozzle cost?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "unit_price_usd: 420.00"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The Fuel injector nozzle costs $420.00.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "ans-02",
+      "type": "answerable",
+      "question": "What are the standard delivery times for MarineParts Ltd and OceanFlow Supplies?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "standard delivery within 14 days",
+        "delivery within 21 days"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "MarineParts Ltd delivers within 14 days; OceanFlow Supplies delivers within 21 days.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "ans-03",
+      "type": "answerable",
+      "question": "What is the unit price in USD and the stock quantity for the Fuel injector nozzle?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "unit_price_usd: 420.00",
+        "stock: 12"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The Fuel injector nozzle has a unit price of 420.00 USD and a stock of 12.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "ans-04",
+      "type": "answerable",
+      "question": "What is MarineParts Ltd's delivery time and discount policy for large orders?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "standard delivery within 14 days",
+        "orders above 5000 USD receive a 5 percent discount"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "MarineParts Ltd delivers orders within 14 days and offers a 5 percent discount on orders above 5,000 USD.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "ans-05",
+      "type": "answerable",
+      "question": "What is the unit price in USD of the Fuel injector nozzle?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "unit_price_usd: 420.00"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The unit price of the Fuel injector nozzle is 420.00 USD.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "ans-06",
+      "type": "answerable",
+      "question": "What discount does MarineParts Ltd offer for orders above 5000 USD?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "5000 USD",
+        "5 percent discount"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "Orders above 5000 USD receive a 5 percent discount.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "ans-07",
+      "type": "answerable",
+      "question": "Which part number is for the fuel injector nozzle?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "part_number: SP-1001"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "SP-1001.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "ans-08",
+      "type": "answerable",
+      "question": "How much discount does MarineParts Ltd give on orders over $5,000?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "5 percent discount",
+        "Orders above 5000 USD"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "Orders above 5000 USD receive a 5 percent discount.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "ans-09",
+      "type": "answerable",
+      "question": "What is the stock of the fuel injector nozzle?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "stock: 12",
+        "description: Fuel injector nozzle"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The fuel injector nozzle has a stock of 12.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "amb-01",
+      "type": "ambiguous",
+      "question": "How much does the part with 25 in stock cost?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "unit_price_usd: 128.00",
+        "stock: 25",
+        "supplier: OceanFlow Supplies"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The part with 25 in stock is the Centrifugal pump seal kit, unit_price_usd: 128.00.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "amb-02",
+      "type": "ambiguous",
+      "question": "If I place a big order from MarineParts, how fast will it arrive, will I get a discount, and can I return it unopened?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "standard delivery within 14 days",
+        "Orders above 5000 USD receive a 5 percent discount",
+        "Returns accepted within 30 days if unopened"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "The standard delivery takes 14 days, orders over 5000 USD get a 5% discount, and returns are accepted within 30 days if unopened.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "amb-03",
+      "type": "ambiguous",
+      "question": "Which part is 128?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "unit_price_usd: 128.00",
+        "part_number: SP-2001"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The part with unit_price_usd 128.00 is SP-2001, a Centrifugal pump seal kit.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "mul-01",
+      "type": "multi_doc",
+      "question": "If a customer orders all 12 units of part SP-1001 (Fuel injector nozzle) from MarineParts Ltd, will they qualify for the 5 percent discount, and what is the total cost after discount?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd",
+        "Orders above 5000 USD receive a 5 percent discount."
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "Yes, because 12 \u00d7 420.00 = 5,040.00 USD, which exceeds 5,000 USD, so the 5 percent discount applies. The total cost after discount is 5,040.00 \u00d7 0.95 = 4,788.00 USD.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies",
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "mul-02",
+      "type": "multi_doc",
+      "question": "How much would a customer pay for 15 units of part SP-1001 from MarineParts Ltd after the discount is applied?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Orders above 5000 USD receive a 5 percent discount.",
+        "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd"
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "The total cost before discount is 6300 USD, and after a 5% discount it is 5985 USD.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge.",
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "mul-03",
+      "type": "multi_doc",
+      "question": "If a customer orders 15 units of part SP-1001 from MarineParts Ltd, what is the total cost before discount, and will the order qualify for the 5% discount?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "unit_price_usd: 420.00",
+        "Orders above 5000 USD receive a 5 percent discount."
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "The total cost before discount is 6300 USD, and the order qualifies for the 5% discount.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies",
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "mul-04",
+      "type": "multi_doc",
+      "question": "If a customer orders 15 units of part SP-1001 from MarineParts Ltd, what is the total cost after discount and how long will delivery take?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Orders above 5000 USD receive a 5 percent discount.",
+        "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd"
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "The total cost after the 5% discount is $5,985.00, and delivery will take 14 days.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge.",
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      }
+    },
+    {
+      "id": "par-01",
+      "type": "partial",
+      "question": "What are the unit prices of parts SP-1001 and SP-1002, and what discount rule applies to MarineParts Ltd orders above $5000? Also, what discount rule applies to OceanFlow Supplies orders?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "unit_price_usd: 420.00",
+        "unit_price_usd: 35.50",
+        "Orders above 5000 USD receive a 5 percent discount."
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "The unit price for part SP-1001 is 420.00 USD, and for part SP-1002 is 35.50 USD. MarineParts Ltd offers a 5 percent discount on orders above 5000 USD. There is no discount rule for OceanFlow Supplies in the documents.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge.",
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies\npart_number: SP-3001; description: Navigation light LED; unit_price_usd: 64.90; stock: 40; supplier: BrightSea Marine"
+      },
+      "missing_item": "Discount rule for OceanFlow Supplies is not documented."
+    },
+    {
+      "id": "par-02",
+      "type": "partial",
+      "question": "What discount does MarineParts Ltd offer for orders over $5,000, and does the document specify discount policies for OceanFlow Supplies?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "MarineParts Ltd offers a 5 percent discount on orders above 5000 USD."
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "MarineParts Ltd offers a 5 percent discount on orders above 5000 USD. Discount policies for OceanFlow Supplies are not provided.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge.",
+        "catalogue.csv": "part_number: SP-3001; description: Navigation light LED; unit_price_usd: 64.90; stock: 40; supplier: BrightSea Marine\npart_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      },
+      "missing_item": "Discount policies for OceanFlow Supplies are not provided"
+    },
+    {
+      "id": "out-01",
+      "type": "out_of_scope",
+      "question": "Can you recommend a good recipe for lasagna?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-02",
+      "type": "out_of_scope",
+      "question": "I need legal advice on how to handle a faulty machine that caused injury.",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "sensitive"
+    },
+    {
+      "id": "out-03",
+      "type": "out_of_scope",
+      "question": "Who won the World Series in 2020?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-04",
+      "type": "out_of_scope",
+      "question": "Do you have any information on the availability of part 98765?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "near_miss"
+    },
+    {
+      "id": "out-05",
+      "type": "out_of_scope",
+      "question": "Can you provide medical advice about equipment failure causing burns?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "sensitive"
+    },
+    {
+      "id": "out-06",
+      "type": "out_of_scope",
+      "question": "Explain how quantum computing works.",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    }
+  ]
+}

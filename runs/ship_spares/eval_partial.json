@@ -1,0 +1,189 @@
+{
+  "status": "incomplete",
+  "cases": [
+    {
+      "id": "mul-01",
+      "type": "multi_doc",
+      "question": "What is the supplier of the Fuel injector nozzle and what is the discount for orders above 5000 USD?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "supplier: MarineParts Ltd",
+        "Orders above 5000 USD receive a 5 percent discount."
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "supplier: MarineParts Ltd; Orders above 5000 USD receive a 5 percent discount.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies",
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "mul-02",
+      "type": "multi_doc",
+      "question": "What is the supplier of the Centrifugal pump seal kit and what is the standard delivery time of MarineParts Ltd?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "supplier: OceanFlow Supplies",
+        "standard delivery within 14 days"
+      ],
+      "expected_sources": [
+        "catalogue.csv",
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "supplier: OceanFlow Supplies; standard delivery within 14 days",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies",
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      }
+    },
+    {
+      "id": "amb-01",
+      "type": "ambiguous",
+      "question": "What is the supplier of the Centrifugal pump seal kit?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "supplier: OceanFlow Supplies"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The supplier of the Centrifugal pump seal kit is OceanFlow Supplies.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      },
+      "topic": "Part lookup"
+    },
+    {
+      "id": "amb-02",
+      "type": "ambiguous",
+      "question": "What is the delivery time for orders above 5000 USD?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "standard delivery within 14 days",
+        "orders above 5000 USD",
+        "5 percent discount"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "Orders above 5000 USD receive a 5 percent discount and have a standard delivery within 14 days.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      },
+      "topic": "Part lookup"
+    },
+    {
+      "id": "ans-01",
+      "type": "answerable",
+      "question": "What is the supplier of the Fuel injector nozzle?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "supplier: MarineParts Ltd"
+      ],
+      "expected_sources": [
+        "catalogue.csv"
+      ],
+      "reference_answer": "The supplier of the Fuel injector nozzle is MarineParts Ltd.",
+      "evidence": {
+        "catalogue.csv": "part_number: SP-1001; description: Fuel injector nozzle; unit_price_usd: 420.00; stock: 12; supplier: MarineParts Ltd\npart_number: SP-1002; description: Lube oil filter; unit_price_usd: 35.50; stock: 80; supplier: MarineParts Ltd\npart_number: SP-2001; description: Centrifugal pump seal kit; unit_price_usd: 128.00; stock: 25; supplier: OceanFlow Supplies"
+      },
+      "topic": "Part lookup"
+    },
+    {
+      "id": "ans-02",
+      "type": "answerable",
+      "question": "What is the delivery time for MarineParts Ltd?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "standard delivery within 14 days"
+      ],
+      "expected_sources": [
+        "supplier_terms.txt"
+      ],
+      "reference_answer": "MarineParts Ltd offers standard delivery within 14 days.",
+      "evidence": {
+        "supplier_terms.txt": "MarineParts Ltd terms: standard delivery within 14 days. Orders above 5000 USD receive a 5 percent discount. Returns accepted within 30 days if unopened. OceanFlow Supplies terms: delivery within 21 days. Emergency air freight is available at an extra 15 percent charge."
+      },
+      "topic": "Part lookup"
+    },
+    {
+      "id": "out-01",
+      "type": "out_of_scope",
+      "question": "What is the best way to cook a chicken breast?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-02",
+      "type": "out_of_scope",
+      "question": "Can you provide the part number for a specific sports car model?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-03",
+      "type": "out_of_scope",
+      "question": "How do I calculate the discount on a purchase of 100 units of a product?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "near_miss"
+    },
+    {
+      "id": "out-04",
+      "type": "out_of_scope",
+      "question": "Can you provide my personal medical history?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "sensitive"
+    },
+    {
+      "id": "out-05",
+      "type": "out_of_scope",
+      "question": "What is the stock availability for a product in a specific country?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-06",
+      "type": "out_of_scope",
+      "question": "Can you provide the supplier terms for a product with a specific warranty?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "near_miss"
+    }
+  ],
+  "dropped": {
+    "invalid_evidence_pair": 19,
+    "fact_not_in_source": 4,
+    "reference_missing_fact": 4,
+    "missing_batch_verdict": 3,
+    "verification_rejected": 3,
+    "duplicate_question": 28,
+    "verification_invalid_facts": 5
+  },
+  "calls": 39
+}

@@ -1,0 +1,15 @@
+TASK: critic_rule
+You are improving the system prompt of a document-grounded assistant. Below are failures of ONE kind. Write ONE new rule that would prevent this kind of failure in general.
+
+FAILURE KIND: {{category}}
+WHAT IT MEANS: {{description}}
+
+EXAMPLES (question, then the assistant's answer):
+{{examples}}
+
+Constraints for the rule:
+- 10 to 40 words, one or two imperative sentences, addressed to the assistant.
+- General: it must work for ANY document set. Do not mention specific numbers, names, part IDs, filenames or facts from the examples.
+- Do not weaken the existing rule that answers must come only from the supplied context.
+
+Return JSON only: {"rule": "the rule text"}

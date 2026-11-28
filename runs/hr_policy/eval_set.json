@@ -1,0 +1,781 @@
+{
+  "meta": {
+    "verification_enabled": true,
+    "verification_audit": [
+      {
+        "question": "What is the annual leave entitlement for shore staff and what travel expense can they claim for airfare and meals?",
+        "verification": [
+          {
+            "index": 0,
+            "valid": true,
+            "duplicate": false,
+            "reason": "Question explicitly asks for both facts (annual leave entitlement and travel expense claim details). Both facts are necessary and the reference answer addresses the entire question. The question falls within the scope of annual leave entitlements and travel expense allowances."
+          }
+        ]
+      },
+      {
+        "question": "How far in advance must leave be requested and how must hotel stays be booked?",
+        "verification": [
+          {
+            "index": 1,
+            "valid": true,
+            "duplicate": false,
+            "reason": "Question requests both the advance notice requirement for leave and the booking method for hotel stays. Both facts are required and the reference answer covers them fully. The question is within the scope of leave procedures and travel booking."
+          }
+        ]
+      },
+      {
+        "question": "How many paid sick leave days are employees entitled to per year and within how many days must expense reports be submitted?",
+        "verification": [
+          {
+            "index": 2,
+            "valid": true,
+            "duplicate": false,
+            "reason": "Question asks for paid sick leave days and the deadline for expense reports. Both facts are essential and the reference answer answers the entire question. The question is within the scope of sick leave policies and expense reporting deadlines."
+          }
+        ]
+      },
+      {
+        "question": "How many days can I carry over?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Annual leave entitlements",
+          "key_facts": [
+            "Up to 5 unused days may be carried over into the next year."
+          ],
+          "reference_answer": "Up to 5 unused days may be carried over into the next year.",
+          "reason": "The evidence states that up to 5 unused days may be carried over, matching the candidate\u2019s answer."
+        }
+      },
+      {
+        "question": "What do I need if I\u2019m sick for more than two days?",
+        "verification": {
+          "index": 1,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Sick leave requirements",
+          "key_facts": [
+            "A medical certificate is required for absences longer than 2 consecutive days."
+          ],
+          "reference_answer": "A medical certificate is required for absences longer than 2 consecutive days.",
+          "reason": "The evidence specifies that a medical certificate is required for absences longer than two consecutive days, supporting the candidate\u2019s answer."
+        }
+      },
+      {
+        "question": "What can I claim for meals while travelling?",
+        "verification": {
+          "index": 0,
+          "valid": false,
+          "duplicate": true,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "daily meal allowance of 40 USD"
+          ],
+          "reference_answer": "Shore staff travelling on company business may claim a daily meal allowance of 40 USD.",
+          "reason": "Duplicate of prior case; the same fact is already provided in the evidence and prior facts."
+        }
+      },
+      {
+        "question": "When do I need to submit my expense report?",
+        "verification": {
+          "index": 1,
+          "valid": false,
+          "duplicate": true,
+          "topic": "Expense reporting deadlines",
+          "key_facts": [
+            "30 days of return"
+          ],
+          "reference_answer": "Expense reports are due within 30 days of return.",
+          "reason": "Duplicate of prior case; the same fact is already provided in the evidence and prior facts."
+        }
+      },
+      {
+        "question": "How much do I get for meals on a business trip?",
+        "verification": {
+          "index": 0,
+          "valid": false,
+          "duplicate": true,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "daily meal allowance of 40 USD"
+          ],
+          "reference_answer": "The policy allows a daily meal allowance of 40 USD for shore staff traveling on company business.",
+          "reason": "Duplicate of prior case."
+        }
+      },
+      {
+        "question": "When should I file my expense report after returning?",
+        "verification": {
+          "index": 1,
+          "valid": false,
+          "duplicate": true,
+          "topic": "Expense reporting deadlines",
+          "key_facts": [
+            "Expense reports are due within 30 days of return"
+          ],
+          "reference_answer": "Expense reports are due within 30 days of return.",
+          "reason": "Duplicate of prior case."
+        }
+      },
+      {
+        "question": "What type of airfare can Shore staff claim on company business?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "economy airfare"
+          ],
+          "reference_answer": "Shore staff travelling on company business may claim economy airfare.",
+          "reason": "The evidence states that Shore staff may claim economy airfare for company business, matching the reference answer and key fact."
+        }
+      },
+      {
+        "question": "What is the daily meal allowance for Shore staff traveling on company business?",
+        "verification": {
+          "index": 1,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "daily meal allowance of 40 USD"
+          ],
+          "reference_answer": "Shore staff travelling on company business may claim a daily meal allowance of 40 USD.",
+          "reason": "The evidence specifies a daily meal allowance of 40 USD for Shore staff on company business, which aligns with the reference answer and key fact."
+        }
+      },
+      {
+        "question": "How should hotel stays be booked for Shore staff traveling on company business?",
+        "verification": {
+          "index": 2,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "Hotel stays must be booked through the approved travel desk"
+          ],
+          "reference_answer": "Hotel stays must be booked through the approved travel desk.",
+          "reason": "The evidence requires hotel stays to be booked via the approved travel desk, matching the reference answer and key fact."
+        }
+      },
+      {
+        "question": "When are expense reports due after return?",
+        "verification": {
+          "index": 3,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "Expense reports are due within 30 days of return"
+          ],
+          "reference_answer": "Expense reports are due within 30 days of return.",
+          "reason": "The evidence states that expense reports must be submitted within 30 days of return, which is reflected in the reference answer and key fact."
+        }
+      },
+      {
+        "question": "Which travel expenses can Shore staff claim when traveling on company business?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "economy airfare",
+            "daily meal allowance of 40 USD"
+          ],
+          "reference_answer": "Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD.",
+          "reason": "The reference answer directly matches the evidence that Shore staff may claim economy airfare and a daily meal allowance of 40\u202fUSD, and the key facts are supported by the evidence."
+        }
+      },
+      {
+        "question": "What are the requirements for booking hotel stays and submitting expense reports for Shore staff traveling on company business?",
+        "verification": {
+          "index": 1,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Expense reporting deadlines",
+          "key_facts": [
+            "Hotel stays must be booked through the approved travel desk",
+            "Expense reports are due within 30 days of return"
+          ],
+          "reference_answer": "Hotel stays must be booked through the approved travel desk, and expense reports are due within 30 days of return.",
+          "reason": "The answer accurately reflects the evidence stating that hotel stays must be booked via the approved travel desk and that expense reports are due within 30 days of return, with both facts explicitly listed."
+        }
+      },
+      {
+        "question": "Summarize the travel policy for Shore staff traveling on company business.",
+        "verification": {
+          "index": 2,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "economy airfare",
+            "daily meal allowance of 40 USD",
+            "Hotel stays must be booked through the approved travel desk",
+            "Expense reports are due within 30 days of return"
+          ],
+          "reference_answer": "Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD; hotel stays must be booked through the approved travel desk, and expense reports are due within 30 days of return.",
+          "reason": "The summary incorporates all four facts from the evidence, correctly stating the travel policy for Shore staff, and each fact is supported by the provided evidence."
+        }
+      },
+      {
+        "question": "How many paid annual leave days do Shore staff get each year?",
+        "verification": {
+          "index": 0,
+          "valid": false,
+          "duplicate": true,
+          "topic": "",
+          "key_facts": [],
+          "reference_answer": "",
+          "reason": "Duplicate of prior case about annual leave entitlement."
+        }
+      },
+      {
+        "question": "What is the minimum notice period required to request leave?",
+        "verification": {
+          "index": 1,
+          "valid": false,
+          "duplicate": true,
+          "topic": "",
+          "key_facts": [],
+          "reference_answer": "",
+          "reason": "Duplicate of prior case about leave request notice period."
+        }
+      },
+      {
+        "question": "How many unused leave days can be carried over to the next year?",
+        "verification": {
+          "index": 2,
+          "valid": false,
+          "duplicate": true,
+          "topic": "",
+          "key_facts": [],
+          "reference_answer": "",
+          "reason": "Duplicate of prior case about carry over of unused leave days."
+        }
+      },
+      {
+        "question": "When are expense reports due after return for Shore staff traveling on company business?",
+        "verification": {
+          "index": 0,
+          "valid": false,
+          "duplicate": true,
+          "topic": "Expense reporting deadlines",
+          "key_facts": [],
+          "reference_answer": "",
+          "reason": "Duplicate of a prior candidate with the same question and facts."
+        }
+      },
+      {
+        "question": "How many paid sick leave days do employees receive each year, and what documentation is required for absences longer than two days?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Sick leave requirements",
+          "key_facts": [
+            "Employees receive 10 days of paid sick leave per year.",
+            "A medical certificate is required for absences longer than 2 consecutive days."
+          ],
+          "reference_answer": "Employees receive 10 days of paid sick leave per year, and a medical certificate is required for absences longer than 2 consecutive days.",
+          "reason": "Both facts are directly stated in the evidence: \"Employees receive 10 days of paid sick leave per year\" and \"A medical certificate is required for absences longer than 2 consecutive days.\" The answer is fully supported and not a duplicate of any prior case."
+        }
+      },
+      {
+        "question": "How many days of annual leave are Shore staff entitled to per calendar year, and how many unused days may be carried over?",
+        "verification": {
+          "index": 1,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Annual leave entitlements",
+          "key_facts": [
+            "Shore staff are entitled to 24 days of paid annual leave per calendar year.",
+            "Up to 5 unused days may be carried over into the next year."
+          ],
+          "reference_answer": "Shore staff are entitled to 24 days of paid annual leave per calendar year, and up to 5 unused days may be carried over into the next year.",
+          "reason": "The evidence provides both the entitlement and carry\u2011over limits, matching the candidate\u2019s facts. No duplication with prior cases."
+        }
+      },
+      {
+        "question": "What is the minimum notice period for requesting leave, and through which portal must it be submitted?",
+        "verification": {
+          "index": 2,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Leave request procedures",
+          "key_facts": [
+            "Leave must be requested at least 14 days in advance.",
+            "Leave must be requested through the HR portal."
+          ],
+          "reference_answer": "Leave must be requested at least 14 days in advance through the HR portal.",
+          "reason": "The evidence states both the 14\u2011day notice period and the requirement to use the HR portal, fully supporting the answer. It is not a duplicate of earlier questions."
+        }
+      },
+      {
+        "question": "What documentation is required for absences longer than two consecutive days?",
+        "verification": {
+          "index": 3,
+          "valid": false,
+          "duplicate": true,
+          "topic": "Sick leave requirements",
+          "key_facts": [
+            "A medical certificate is required for absences longer than 2 consecutive days."
+          ],
+          "reference_answer": "A medical certificate is required for absences longer than 2 consecutive days.",
+          "reason": "This question and answer are a semantic duplicate of prior case 5: \"What do I need if I\u2019m sick for more than two days?\" and therefore should be rejected."
+        }
+      },
+      {
+        "question": "Which travel desk must Shore staff use to book hotel stays?",
+        "verification": {
+          "index": 0,
+          "valid": false,
+          "duplicate": true,
+          "topic": "Travel expense allowances",
+          "key_facts": [
+            "Hotel stays must be booked through the approved travel desk"
+          ],
+          "reference_answer": "Shore staff must book hotel stays through the approved travel desk.",
+          "reason": "The candidate question is a semantic duplicate of a prior case asking how hotel stays should be booked for Shore staff. Therefore it is rejected as a duplicate."
+        }
+      },
+      {
+        "question": "How many paid annual leave days do Shore staff receive, and how many unused days can they carry over?",
+        "verification": {
+          "index": 0,
+          "valid": false,
+          "duplicate": true,
+          "topic": "",
+          "key_facts": [],
+          "reference_answer": "",
+          "reason": "The question is a semantic duplicate of prior cases \"How many days can I carry over?\" and \"How many days of annual leave are Shore staff entitled to per calendar year, and how many unused days may be carried over?\"."
+        }
+      },
+      {
+        "question": "What is the annual paid sick leave entitlement for employees, and what is required for absences longer than two days?",
+        "verification": {
+          "index": 1,
+          "valid": false,
+          "duplicate": true,
+          "topic": "",
+          "key_facts": [],
+          "reference_answer": "",
+          "reason": "The question is a semantic duplicate of prior cases \"How many paid sick leave days are employees entitled to per year and within how many days must expense reports be submitted?\", \"What do I need if I\u2019m sick for more than two days?\", and \"How many paid sick leave days do employees receive each year, and what documentation is required for absences longer than two days?\"."
+        }
+      },
+      {
+        "question": "What travel expense can Shore staff claim and what is the deadline for submitting expense reports?",
+        "verification": {
+          "index": 0,
+          "valid": true,
+          "duplicate": false,
+          "topic": "Travel expense allowances, Expense reporting deadlines",
+          "key_facts": [
+            "economy airfare",
+            "Expense reports are due within 30 days of return"
+          ],
+          "reference_answer": "Shore staff may claim economy airfare, and expense reports must be submitted within 30 days of return.",
+          "reason": "The travel policy states that Shore staff can claim economy airfare and that expense reports are due within 30 days of return. Both facts are directly supported by the evidence and match the question. No prior candidate asked the same combined question, so it is not a duplicate."
+        }
+      }
+    ],
+    "topic_coverage": {
+      "Annual leave entitlements": 2,
+      "Sick leave requirements": 2,
+      "Travel expense allowances": 6,
+      "Expense reporting deadlines": 1,
+      "Leave request procedures": 1
+    },
+    "uncovered_topics": [],
+    "generated_with": "openai/gpt-oss-20b",
+    "seed": 7,
+    "n_cases": 22,
+    "target": 24,
+    "by_type": {
+      "multi_doc": 3,
+      "ambiguous": 2,
+      "answerable": 11,
+      "out_of_scope": 6
+    },
+    "prompts": [
+      "prompts/evalgen_answerable.txt",
+      "prompts/evalgen_multi.txt",
+      "prompts/evalgen_partial.txt",
+      "prompts/evalgen_refuse.txt",
+      "prompts/evalgen_verify.txt",
+      "prompts/evalgen_batch.txt",
+      "prompts/evalgen_verify_batch.txt",
+      "prompts/evalgen_evidence_multi.txt",
+      "prompts/evalgen_evidence_audit.txt"
+    ],
+    "required_types": [
+      "answerable",
+      "ambiguous",
+      "out_of_scope",
+      "multi_doc"
+    ],
+    "model_calls": 35,
+    "dropped_by_validation": {
+      "verification_rejected": 12,
+      "missing_batch_verdict": 1,
+      "duplicate_question": 3
+    }
+  },
+  "cases": [
+    {
+      "id": "mul-01",
+      "type": "multi_doc",
+      "question": "What is the annual leave entitlement for shore staff and what travel expense can they claim for airfare and meals?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Shore staff are entitled to 24 days of paid annual leave per calendar year.",
+        "Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD."
+      ],
+      "expected_sources": [
+        "leave_policy.txt",
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Shore staff are entitled to 24 days of paid annual leave per calendar year.; Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD.",
+      "evidence": {
+        "leave_policy.txt": "Annual Leave Policy. Shore staff are entitled to 24 days of paid annual leave per calendar year. Leave must be requested at least 14 days in advance through the HR portal. Up to 5 unused days may be carried over into the next year. Sick Leave. Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days.",
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      }
+    },
+    {
+      "id": "mul-02",
+      "type": "multi_doc",
+      "question": "How far in advance must leave be requested and how must hotel stays be booked?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Leave must be requested at least 14 days in advance through the HR portal.",
+        "Hotel stays must be booked through the approved travel desk."
+      ],
+      "expected_sources": [
+        "leave_policy.txt",
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Leave must be requested at least 14 days in advance through the HR portal.; Hotel stays must be booked through the approved travel desk.",
+      "evidence": {
+        "leave_policy.txt": "Annual Leave Policy. Shore staff are entitled to 24 days of paid annual leave per calendar year. Leave must be requested at least 14 days in advance through the HR portal. Up to 5 unused days may be carried over into the next year. Sick Leave. Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days.",
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      }
+    },
+    {
+      "id": "mul-03",
+      "type": "multi_doc",
+      "question": "How many paid sick leave days are employees entitled to per year and within how many days must expense reports be submitted?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Employees receive 10 days of paid sick leave per year.",
+        "Expense reports are due within 30 days of return."
+      ],
+      "expected_sources": [
+        "leave_policy.txt",
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Employees receive 10 days of paid sick leave per year.; Expense reports are due within 30 days of return.",
+      "evidence": {
+        "leave_policy.txt": "Annual Leave Policy. Shore staff are entitled to 24 days of paid annual leave per calendar year. Leave must be requested at least 14 days in advance through the HR portal. Up to 5 unused days may be carried over into the next year. Sick Leave. Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days.",
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      }
+    },
+    {
+      "id": "amb-01",
+      "type": "ambiguous",
+      "question": "How many days can I carry over?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Up to 5 unused days may be carried over into the next year."
+      ],
+      "expected_sources": [
+        "leave_policy.txt"
+      ],
+      "reference_answer": "Up to 5 unused days may be carried over into the next year.",
+      "evidence": {
+        "leave_policy.txt": "Annual Leave Policy. Shore staff are entitled to 24 days of paid annual leave per calendar year. Leave must be requested at least 14 days in advance through the HR portal. Up to 5 unused days may be carried over into the next year. Sick Leave. Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days."
+      },
+      "topic": "Annual leave entitlements"
+    },
+    {
+      "id": "amb-02",
+      "type": "ambiguous",
+      "question": "What do I need if I\u2019m sick for more than two days?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "A medical certificate is required for absences longer than 2 consecutive days."
+      ],
+      "expected_sources": [
+        "leave_policy.txt"
+      ],
+      "reference_answer": "A medical certificate is required for absences longer than 2 consecutive days.",
+      "evidence": {
+        "leave_policy.txt": "Annual Leave Policy. Shore staff are entitled to 24 days of paid annual leave per calendar year. Leave must be requested at least 14 days in advance through the HR portal. Up to 5 unused days may be carried over into the next year. Sick Leave. Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days."
+      },
+      "topic": "Sick leave requirements"
+    },
+    {
+      "id": "ans-01",
+      "type": "answerable",
+      "question": "What type of airfare can Shore staff claim on company business?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "economy airfare"
+      ],
+      "expected_sources": [
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Shore staff travelling on company business may claim economy airfare.",
+      "evidence": {
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      },
+      "topic": "Travel expense allowances"
+    },
+    {
+      "id": "ans-02",
+      "type": "answerable",
+      "question": "What is the daily meal allowance for Shore staff traveling on company business?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "daily meal allowance of 40 USD"
+      ],
+      "expected_sources": [
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Shore staff travelling on company business may claim a daily meal allowance of 40 USD.",
+      "evidence": {
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      },
+      "topic": "Travel expense allowances"
+    },
+    {
+      "id": "ans-03",
+      "type": "answerable",
+      "question": "How should hotel stays be booked for Shore staff traveling on company business?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Hotel stays must be booked through the approved travel desk"
+      ],
+      "expected_sources": [
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Hotel stays must be booked through the approved travel desk.",
+      "evidence": {
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      },
+      "topic": "Travel expense allowances"
+    },
+    {
+      "id": "ans-04",
+      "type": "answerable",
+      "question": "When are expense reports due after return?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Expense reports are due within 30 days of return"
+      ],
+      "expected_sources": [
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Expense reports are due within 30 days of return.",
+      "evidence": {
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      },
+      "topic": "Travel expense allowances"
+    },
+    {
+      "id": "ans-05",
+      "type": "answerable",
+      "question": "Which travel expenses can Shore staff claim when traveling on company business?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "economy airfare",
+        "daily meal allowance of 40 USD"
+      ],
+      "expected_sources": [
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD.",
+      "evidence": {
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      },
+      "topic": "Travel expense allowances"
+    },
+    {
+      "id": "ans-06",
+      "type": "answerable",
+      "question": "What are the requirements for booking hotel stays and submitting expense reports for Shore staff traveling on company business?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Hotel stays must be booked through the approved travel desk",
+        "Expense reports are due within 30 days of return"
+      ],
+      "expected_sources": [
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Hotel stays must be booked through the approved travel desk, and expense reports are due within 30 days of return.",
+      "evidence": {
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      },
+      "topic": "Expense reporting deadlines"
+    },
+    {
+      "id": "ans-07",
+      "type": "answerable",
+      "question": "Summarize the travel policy for Shore staff traveling on company business.",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "economy airfare",
+        "daily meal allowance of 40 USD",
+        "Hotel stays must be booked through the approved travel desk"
+      ],
+      "expected_sources": [
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD; hotel stays must be booked through the approved travel desk, and expense reports are due within 30 days of return.",
+      "evidence": {
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      },
+      "topic": "Travel expense allowances"
+    },
+    {
+      "id": "ans-08",
+      "type": "answerable",
+      "question": "How many paid sick leave days do employees receive each year, and what documentation is required for absences longer than two days?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Employees receive 10 days of paid sick leave per year.",
+        "A medical certificate is required for absences longer than 2 consecutive days."
+      ],
+      "expected_sources": [
+        "leave_policy.txt"
+      ],
+      "reference_answer": "Employees receive 10 days of paid sick leave per year, and a medical certificate is required for absences longer than 2 consecutive days.",
+      "evidence": {
+        "leave_policy.txt": "Annual Leave Policy. Shore staff are entitled to 24 days of paid annual leave per calendar year. Leave must be requested at least 14 days in advance through the HR portal. Up to 5 unused days may be carried over into the next year. Sick Leave. Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days."
+      },
+      "topic": "Sick leave requirements"
+    },
+    {
+      "id": "ans-09",
+      "type": "answerable",
+      "question": "How many days of annual leave are Shore staff entitled to per calendar year, and how many unused days may be carried over?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Shore staff are entitled to 24 days of paid annual leave per calendar year.",
+        "Up to 5 unused days may be carried over into the next year."
+      ],
+      "expected_sources": [
+        "leave_policy.txt"
+      ],
+      "reference_answer": "Shore staff are entitled to 24 days of paid annual leave per calendar year, and up to 5 unused days may be carried over into the next year.",
+      "evidence": {
+        "leave_policy.txt": "Annual Leave Policy. Shore staff are entitled to 24 days of paid annual leave per calendar year. Leave must be requested at least 14 days in advance through the HR portal. Up to 5 unused days may be carried over into the next year. Sick Leave. Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days."
+      },
+      "topic": "Annual leave entitlements"
+    },
+    {
+      "id": "ans-10",
+      "type": "answerable",
+      "question": "What is the minimum notice period for requesting leave, and through which portal must it be submitted?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "Leave must be requested at least 14 days in advance.",
+        "Leave must be requested through the HR portal."
+      ],
+      "expected_sources": [
+        "leave_policy.txt"
+      ],
+      "reference_answer": "Leave must be requested at least 14 days in advance through the HR portal.",
+      "evidence": {
+        "leave_policy.txt": "Annual Leave Policy. Shore staff are entitled to 24 days of paid annual leave per calendar year. Leave must be requested at least 14 days in advance through the HR portal. Up to 5 unused days may be carried over into the next year. Sick Leave. Employees receive 10 days of paid sick leave per year. A medical certificate is required for absences longer than 2 consecutive days."
+      },
+      "topic": "Leave request procedures"
+    },
+    {
+      "id": "ans-11",
+      "type": "answerable",
+      "question": "What travel expense can Shore staff claim and what is the deadline for submitting expense reports?",
+      "expected_behavior": "answer",
+      "key_facts": [
+        "economy airfare",
+        "Expense reports are due within 30 days of return"
+      ],
+      "expected_sources": [
+        "travel_policy.txt"
+      ],
+      "reference_answer": "Shore staff may claim economy airfare, and expense reports must be submitted within 30 days of return.",
+      "evidence": {
+        "travel_policy.txt": "Travel Policy. Shore staff travelling on company business may claim economy airfare and a daily meal allowance of 40 USD. Hotel stays must be booked through the approved travel desk. Expense reports are due within 30 days of return."
+      }
+    },
+    {
+      "id": "out-01",
+      "type": "out_of_scope",
+      "question": "What's the best way to train a dog to fetch?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-02",
+      "type": "out_of_scope",
+      "question": "How do I code a binary search in Python?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-03",
+      "type": "out_of_scope",
+      "question": "Who won the World Series in 2020?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-04",
+      "type": "out_of_scope",
+      "question": "Can you explain the plot of Inception?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "off_topic"
+    },
+    {
+      "id": "out-05",
+      "type": "out_of_scope",
+      "question": "What is the procedure for taking a leave of absence for a family emergency?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "near_miss"
+    },
+    {
+      "id": "out-06",
+      "type": "out_of_scope",
+      "question": "How can I apply for unpaid leave?",
+      "expected_behavior": "refuse",
+      "key_facts": [],
+      "expected_sources": [],
+      "reference_answer": "",
+      "evidence": {},
+      "category": "near_miss"
+    }
+  ]
+}

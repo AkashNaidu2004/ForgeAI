@@ -1,0 +1,57 @@
+{
+  "stages": {
+    "evalgen": {
+      "calls": 41,
+      "cache_hits": 26,
+      "prompt_tokens": 36520,
+      "completion_tokens": 49056,
+      "seconds": 136.09,
+      "waited_s": 714.21
+    },
+    "evaluate": {
+      "calls": 72,
+      "cache_hits": 28,
+      "prompt_tokens": 39327,
+      "completion_tokens": 10738,
+      "seconds": 853.52,
+      "waited_s": 109.55
+    },
+    "optimize": {
+      "calls": 26,
+      "cache_hits": 64,
+      "prompt_tokens": 16463,
+      "completion_tokens": 1442,
+      "seconds": 414.58,
+      "waited_s": 0.0
+    }
+  },
+  "events": [
+    {
+      "time": "2026-11-28T10:20:01Z",
+      "stage": "evaluate",
+      "type": "daily_budget",
+      "detail": "openai/gpt-oss-20b: provider reported the daily limit"
+    },
+    {
+      "time": "2026-11-28T10:20:04Z",
+      "stage": "evaluate",
+      "type": "backend_fallback",
+      "detail": "hosted `openai/gpt-oss-20b` unavailable (provider reports the DAILY limit for openai/gpt-oss-20b is reached); continuing on local Ollama (gen `qwen2.5:7b`, judge `llama3.2:3b`)"
+    }
+  ],
+  "totals": {
+    "calls": 139,
+    "cache_hits": 118,
+    "prompt_tokens": 92310,
+    "completion_tokens": 61236,
+    "seconds": 1404.2,
+    "waited_s": 823.8
+  },
+  "limits": {
+    "rpm": 30.0,
+    "tpm": 8000.0,
+    "rpd": 1000.0,
+    "tpd": 200000.0,
+    "margin": 0.85
+  }
+}
